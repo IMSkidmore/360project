@@ -1,3 +1,5 @@
+//alertbox for any errors
+
 package application;
 
 import javafx.geometry.Pos;
