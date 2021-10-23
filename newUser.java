@@ -56,10 +56,11 @@ public class newUser extends Application {
         pane.setAlignment(Pos.CENTER);
         pane.setHgap(5);
         pane.setVgap(10);
+
         Text sceneTitle= new Text("Please Enter the Following Information");
         sceneTitle.setFont(Font.font("Tacoma", FontWeight.NORMAL, 20));
-        pane.add(sceneTitle,0,0,2,1);
-        pane.setPadding(new Insets(10,10,10,10));
+        pane.add(sceneTitle,0,0,5,1);
+        pane.setPadding(new Insets(25,25,25,25));
 
         pane.add(firstName,0,1);
         pane.add(tf1,1,1);
@@ -67,8 +68,8 @@ public class newUser extends Application {
         pane.add(lastName, 2,1);
         pane.add(tf2,3,1);
 
-        pane.add(DOB,0,3);
-        pane.add(tf3,1,3);
+        pane.add(DOB,0,4);
+        pane.add(tf3,1,4);
 
 
         //create Cancel button and put on gridpane
@@ -76,19 +77,19 @@ public class newUser extends Application {
         HBox cancelBox = new HBox(10);
         cancelBox.setAlignment(Pos.BOTTOM_LEFT);
         cancelBox.getChildren().add(cancel);
-        pane.add(cancelBox,1,4);
+        pane.add(cancelBox,1,5);
 
         Button create = new Button("Create");
         HBox createBox = new HBox(10);
         createBox.setAlignment(Pos.BOTTOM_LEFT);
         createBox.getChildren().add(create);
-        pane.add(createBox,2,4);
+        pane.add(createBox,3,5);
 
         pane.setStyle("-fx-background-color: #a2f3f5;");
 
 
         //Adding the major container created above to the scene and setting the scene up
-        Scene scene = new Scene(pane, 550, 300);
+        Scene scene = new Scene(pane, 550, 275);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Create Account");
         primaryStage.show();
