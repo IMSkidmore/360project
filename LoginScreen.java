@@ -42,9 +42,9 @@ public class LoginScreen extends StackPane {
 	}
 	private class ButtonHandler implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
-			if (username.getText().equals("Austin") && password.getText().equals("Piper")) {
-				//primaryStage.setScene(value);
-			} else if (username.getText().equals("Austin") == false) {
+			if (username.getText().equals("Username") && password.getText().equals("Password")) {
+				//change screen here
+			} else if (username.getText().equals("Username") == false) {
 				AlertBox.display("Login Error", "Username is incorrect, check capslock");
 			} else {
 				AlertBox.display("Login Error", "Password is incorrect, check capslock");
