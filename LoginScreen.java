@@ -32,12 +32,7 @@ public class LoginScreen extends StackPane {
 		vBoxLayout1.setPadding(new Insets(10, 10, 10, 10));
 		Button login = new Button("Login");
 		Button newUser = new Button("New User");
-		if (choice == 2) {
-			vBoxLayout1.getChildren().addAll(new Label("Username"), username, new Label("Password"), password, login,
-					newUser);
-		} else {
-			vBoxLayout1.getChildren().addAll(new Label("Username"), username, new Label("Password"), password, login);
-		}
+		vBoxLayout1.getChildren().addAll(new Label("Username"), username, new Label("Password"), password, login);
 		this.getChildren().addAll(vBoxLayout1);
 
 		// Event for button login
