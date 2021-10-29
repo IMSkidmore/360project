@@ -22,7 +22,7 @@ import javafx.scene.control.PasswordField;
 
 public class Main extends Application {
 	private Stage stage;
-	private Scene scene0, scene1, scene2;
+	private Scene scene0, scene1, scene1_1, scene2;
 	private int choice;
 
 	public static void main(String[] args) {
@@ -48,19 +48,17 @@ public class Main extends Application {
 		LoginScreen loginScreen = new LoginScreen(primaryStage, 400, 600);
 		scene1 = new Scene(loginScreen, 400, 600);
 
-		
+		LoginScreenPatient loginScreenPatient = new LoginScreenPatient(primaryStage, 400, 600);
+		scene1_1 = new Scene(loginScreenPatient,400,600);
 		// Button action handler events
 		doctorLogin.setOnAction(e -> {
-			choice = 0;
 			primaryStage.setScene(scene1);
 		});
 		nurseLogin.setOnAction(e -> {
-			choice = 1;
 			primaryStage.setScene(scene1);
 		});
 		patientLogin.setOnAction(e -> {
-			loginScreen.choice = 2;
-			primaryStage.setScene(scene1);
+			primaryStage.setScene(scene1_1);
 		});
 
 		
