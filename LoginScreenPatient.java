@@ -38,18 +38,26 @@ public class LoginScreenPatient extends StackPane {
 		// Event for button login
 		EventHandler loginHandle = new ButtonHandler();
 		login.setOnAction(loginHandle);
+		
+		EventHandler newUserHandle = new NewUserHandler();
+		newUser.setOnAction(newUserHandle);
 
 	}
 	private class ButtonHandler implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
-			if (username.getText().equals("Austin") && password.getText().equals("Piper")) {
-				
-			} else if (username.getText().equals("Austin") == false) {
+			if (username.getText().equals("Username") && password.getText().equals("Password")) {
+				//add change of screen here
+			} else if (username.getText().equals("Username") == false) {
 				AlertBox.display("Login Error", "Username is incorrect, check capslock");
 			} else {
 				AlertBox.display("Login Error", "Password is incorrect, check capslock");
 			}
 		}
 	} // end of ButtonHandler
-
+	private class NewUserHandler implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			//add Change of screen here
+		}
+	}
+	
 }
