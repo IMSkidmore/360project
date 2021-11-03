@@ -42,13 +42,25 @@ public class LoginScreen extends StackPane {
 	}
 	private class ButtonHandler implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
-			if (username.getText().equals("Username") && password.getText().equals("Password")) {
-				//change screen here
-			} else if (username.getText().equals("Username") == false) {
-				AlertBox.display("Login Error", "Username is incorrect, check capslock");
-			} else {
-				AlertBox.display("Login Error", "Password is incorrect, check capslock");
-			}
+		try {
+			Scanner scanner = new Scanner(new FileReader("src/application/LoginEmployees.txt"));
+			String line;
+
+	            while (scanner.hasNext()) {
+	            	line = scanner.nextLine();
+	            	String[] tokens=line.split(",");
+	      
+	            	if (username.getText().equals(tokens[0]) && password.getText().equals(tokens[1])) {
+	    				//add change screen here
+	    			} else if (username.getText().equals(tokens[0])) {
+	    				AlertBox.display("Login Error", "Password is incorrect, check capslock");
+	    			}
+	            }
+	            scanner.close();
+	        } catch (IOException e) {
+	            AlertBox.display("File not found", "Check file location");
+	        }
+			AlertBox.display("Login Error", "Username is incorrect, check capslock");
 		}
 	} // end of ButtonHandler
 
