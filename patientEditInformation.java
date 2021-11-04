@@ -1,4 +1,4 @@
-import javafx.application.Application;
+package application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,8 +9,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 import javafx.scene.paint.Color;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,6 +33,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class patientEditInformation extends Application {
 
+	private TextField nameTF,emailTF,DOBTF,phoneNumTF;
     public void start(Stage primaryStage) {
 
         //Sets text at top of screen
@@ -43,22 +47,22 @@ public class patientEditInformation extends Application {
         Label contactLabel = new Label("Contact Information");
 
         Label name = new Label("Name:               ");
-        TextField nameTF = new TextField();
+        nameTF = new TextField();
         nameTF.setPromptText("John Doe");
         nameTF.setMaxWidth(200);
 
         Label DOB = new Label("Date of Birth:    ");
-        TextField DOBTF = new TextField();
+        DOBTF = new TextField();
         DOBTF.setPromptText("3/12/2000");
         DOBTF.setMaxWidth(200);
 
         Label email = new Label("Email:                ");
-        TextField emailTF = new TextField();
+        emailTF = new TextField();
         emailTF.setPromptText("xxxxxxx@gmail.com");
         emailTF.setMaxWidth(200);
 
         Label phoneNum = new Label("Phone Number:");
-        TextField phoneNumTF = new TextField();
+        phoneNumTF = new TextField();
         phoneNumTF.setPromptText("(XXX)-XXX-XXXX");
         phoneNumTF.setMaxWidth(200);
 
@@ -126,14 +130,20 @@ public class patientEditInformation extends Application {
         //sets color of screen
         pane.setStyle("-fx-background-color: #a2f3f5;");
 
+        //EventHandler for saveChanges Button
+		EventHandler addInfoHandle = new addInformationHandler();
+		saveChanges.setOnAction(addInfoHandle);
+		
         //Adding containers to scene
         Scene scene = new Scene(pane, 550, 275);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Create Account");
         primaryStage.show();
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
+    private class addInformationHandler implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			//Patient newPatient = new Patient(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText());
+		
+		}
+	}
 }
