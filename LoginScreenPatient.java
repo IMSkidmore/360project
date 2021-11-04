@@ -1,5 +1,11 @@
 package application;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,9 +30,11 @@ public class LoginScreenPatient extends StackPane {
 	private TextField username = new TextField();
 	private PasswordField password = new PasswordField();
 	public int choice;
+	private Stage stageLogin;
 	public LoginScreenPatient(Stage primaryStage, int width, int height) {		
 		
 		// Layout for login screen
+		stageLogin = primaryStage;
 		VBox vBoxLayout1 = new VBox();
 		vBoxLayout1.setSpacing(8);
 		vBoxLayout1.setPadding(new Insets(10, 10, 10, 10));
@@ -45,16 +53,16 @@ public class LoginScreenPatient extends StackPane {
 	}
 	private class ButtonHandler implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
-		try {
-			Scanner scanner = new Scanner(new FileReader("src/application/LoginPatients.txt"));
-			String line;
+			try {
+				Scanner scanner = new Scanner(new FileReader("src/application/LoginPatients.txt"));
+				String line;
 
 	            while (scanner.hasNext()) {
 	            	line = scanner.nextLine();
 	            	String[] tokens=line.split(",");
 	            	
 	            	if (username.getText().equals(tokens[0]) && password.getText().equals(tokens[1])) {
-	            		//add change screen here
+	            		//add switch content here
 	    			} else if (username.getText().equals(tokens[0])) {
 	    				AlertBox.display("Login Error", "Password is incorrect, check capslock");
 	    			}
@@ -63,12 +71,13 @@ public class LoginScreenPatient extends StackPane {
 	        } catch (IOException e) {
 	            AlertBox.display("File not found", "Check file location");
 	        }
-		AlertBox.display("Login Error", "Username is incorrect, check capslock");
+			AlertBox.display("Login Error", "Username is incorrect, check capslock");
 		}
 	} // end of ButtonHandler
 	private class NewUserHandler implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
-			//add Change of screen here
+			patientEditInformation pei = new patientEditInformation();
+    		pei.start(stageLogin);
 		}
 	}
 	
