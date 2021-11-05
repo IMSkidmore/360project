@@ -1,4 +1,5 @@
 # 360project -- Lets get this A
+Project Description:
 When a patient come to visit the doctor, first, meet and greet is the office staff nurse. Nurse will 
 take vitals such as weight, height, body temperature, and blood pressure if the patient is over 12 
 and  enter  into  the  system  associated  with  the  visit.  Then  the  patient  will  be  escorted  into  the 
