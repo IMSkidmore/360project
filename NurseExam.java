@@ -123,3 +123,8 @@ public class nurseExam extends Application {
         launch(args);
     }
 }
+
+/*TODO
+-Change class so it is a working screen in main
+-Impliment this code so it updates the patient object
+*/
