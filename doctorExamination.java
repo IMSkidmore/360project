@@ -1,0 +1,45 @@
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Examination extends Application {
+    @Override
+    public void start(Stage stage) throws Exception {
+        VBox vBox = new VBox(15);
+        Label top = new Label("Examination for (Insert Name here)");
+        top.setAlignment(Pos.CENTER);
+        top.setStyle("-fx-font-size: 18px");
+        Label reflex = new Label("Reflexes");
+        reflex.setStyle("-fx-font-size: 18px");
+        RadioButton radioButton0 = new RadioButton("0");
+        RadioButton radioButton1 = new RadioButton("1");
+        RadioButton radioButton2 = new RadioButton("2");
+        RadioButton radioButton3 = new RadioButton("3");
+        RadioButton radioButton4 = new RadioButton("4");
+        HBox hBox = new HBox(20);
+        hBox.getChildren().addAll(reflex, radioButton0, radioButton1, radioButton2,
+                radioButton3, radioButton4);
+        Label other = new Label("(Other physcial tests)");
+        other.setStyle("-fx-font-size: 16px");
+        Button cancel = new Button("Cancel");
+        Button save = new Button("Save");
+
+        HBox hBox1 = new HBox(30);
+        hBox1.getChildren().addAll(cancel, save);
+        hBox1.setAlignment(Pos.CENTER);
+
+        vBox.getChildren().addAll(top,hBox,other,hBox1);
+        stage.setScene(new Scene(vBox,600,400));
+        stage.show();
+
+    }
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
