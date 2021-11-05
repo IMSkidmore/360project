@@ -1,3 +1,5 @@
+//package com.example.demo1;
+
 package application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -33,30 +35,34 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class patientEditInformation extends Application {
 
-	private TextField nameTF,emailTF,DOBTF,phoneNumTF;
+    private TextField nameTF, emailTF, DOBTF, phoneNumTF;
+    private TextField pharmacyNameTF, pharmacyAddressTF, pharmacyPhoneNumTF;
+    private TextField insuranceNameTF, insuranceGroupNumTF, insurancePhoneNumTF;
+
     public void start(Stage primaryStage) {
 
         //Sets text at top of screen
         Text sceneTitle1 = new Text("Welcome \"Patient Name\"");
         sceneTitle1.setFont(Font.font("Tacoma", FontWeight.NORMAL, 20));
         HBox welcomeBox1 = new HBox(10);
-        welcomeBox1.setAlignment(Pos.CENTER_LEFT);
+        welcomeBox1.setAlignment(Pos.TOP_CENTER);
         welcomeBox1.getChildren().add(sceneTitle1);
 
-        //Initialize labels, textfields, prompts, and size
+        //Initialize labels, textfields, prompts, and size for contact info
         Label contactLabel = new Label("Contact Information");
 
-        Label name = new Label("Name:               ");
+
+        Label name = new Label("               Name:");
         nameTF = new TextField();
         nameTF.setPromptText("John Doe");
         nameTF.setMaxWidth(200);
 
-        Label DOB = new Label("Date of Birth:    ");
+        Label DOB = new Label("    Date of Birth:");
         DOBTF = new TextField();
         DOBTF.setPromptText("3/12/2000");
         DOBTF.setMaxWidth(200);
 
-        Label email = new Label("Email:                ");
+        Label email = new Label("                Email:");
         emailTF = new TextField();
         emailTF.setPromptText("xxxxxxx@gmail.com");
         emailTF.setMaxWidth(200);
@@ -65,6 +71,43 @@ public class patientEditInformation extends Application {
         phoneNumTF = new TextField();
         phoneNumTF.setPromptText("(XXX)-XXX-XXXX");
         phoneNumTF.setMaxWidth(200);
+
+        //Initialize labels, textfields, prompts, and size for Pharmacy info
+        Label pharmacyLabel = new Label("Pharmacy Information");
+
+        Label pharmacyName = new Label("               Name:");
+        pharmacyNameTF = new TextField();
+        pharmacyNameTF.setPromptText("CVS Pharmacy");
+        pharmacyNameTF.setMaxWidth(200);
+
+        Label pharmacyAddress = new Label("            Address:");
+        pharmacyAddressTF = new TextField();
+        pharmacyAddressTF.setPromptText("1234 Address Lane, Phoenix, AZ");
+        pharmacyAddressTF.setMaxWidth(200);
+
+        Label pharmacyPhoneNum = new Label("Phone Number:");
+        pharmacyPhoneNumTF = new TextField();
+        pharmacyPhoneNumTF.setPromptText("(XXX)-XXX-XXXX");
+        pharmacyPhoneNumTF.setMaxWidth(200);
+
+
+        //Initialize labels, textfields, prompts, and size for insurance info
+        Label insuranceInformation = new Label("Insurance Information");
+
+        Label insuranceName = new Label("               Name:");
+        insuranceNameTF = new TextField();
+        insuranceNameTF.setPromptText("UMR");
+        insuranceNameTF.setMaxWidth(200);
+
+        Label insuranceGroupNum = new Label("Group Number:");
+        insuranceGroupNumTF = new TextField();
+        insuranceGroupNumTF.setPromptText("XXXXXXXX");
+        insuranceGroupNumTF.setMaxWidth(200);
+
+        Label insurancePhoneNum = new Label("Phone Number:");
+        insurancePhoneNumTF = new TextField();
+        insurancePhoneNumTF.setPromptText("(XXX)-XXX-XXXX");
+        insurancePhoneNumTF.setMaxWidth(200);
 
         //setup of Buttons
         Button saveChanges = new Button("Save Changes");
@@ -79,13 +122,13 @@ public class patientEditInformation extends Application {
 
         //add following after patient is implemented/created
         //         <Patient,String>                               <>
-        TableColumn                 firstNameCol = new TableColumn  ();
+        TableColumn firstNameCol = new TableColumn();
         firstNameCol.setGraphic(headerGraphic);
 
         tableView.getColumns().add(firstNameCol);
 
         //adding elements to their respective Boxes
-        
+
         //Button Boxes
         VBox cancelBox = new VBox();
         VBox saveBox = new VBox();
@@ -96,17 +139,33 @@ public class patientEditInformation extends Application {
         HBox emailBox = new HBox(5);
         HBox phoneBox = new HBox(5);
 
+        HBox pharmNameBox = new HBox(5);
+        HBox pharmAddressBox = new HBox(5);
+        HBox pharmPhoneBox = new HBox(5);
+
+        HBox insuranceNameBox = new HBox(5);
+        HBox insuranceGroupBox = new HBox(5);
+        HBox insurancePhoneBox = new HBox(5);
+
         //adding to button boxes
         saveBox.setAlignment(Pos.BOTTOM_RIGHT);
         saveBox.getChildren().add(saveChanges);
         cancelBox.setAlignment(Pos.BOTTOM_CENTER);
         cancelBox.getChildren().add(cancel);
-        
+
         //adding to contact info boxes
-        nameBox.getChildren().addAll(name,nameTF);
-        DOBBox.getChildren().addAll(DOB,DOBTF);
-        emailBox.getChildren().addAll(email,emailTF);
-        phoneBox.getChildren().addAll(phoneNum,phoneNumTF);
+        nameBox.getChildren().addAll(name, nameTF);
+        DOBBox.getChildren().addAll(DOB, DOBTF);
+        emailBox.getChildren().addAll(email, emailTF);
+        phoneBox.getChildren().addAll(phoneNum, phoneNumTF);
+
+        pharmNameBox.getChildren().addAll(pharmacyName, pharmacyNameTF);
+        pharmAddressBox.getChildren().addAll(pharmacyAddress,pharmacyAddressTF);
+        pharmPhoneBox.getChildren().addAll(pharmacyPhoneNum,pharmacyPhoneNumTF);
+
+        insuranceNameBox.getChildren().addAll(insuranceName, insuranceNameTF);
+        insuranceGroupBox.getChildren().addAll(insuranceGroupNum,insuranceGroupNumTF);
+        insurancePhoneBox.getChildren().addAll(insurancePhoneNum,insurancePhoneNumTF);
 
         //setup of containers
         GridPane pane = new GridPane();
@@ -116,34 +175,49 @@ public class patientEditInformation extends Application {
         pane.setHgap(5);
 
         //adding everything to the GridPane
-        pane.add(welcomeBox1, 0,0);
+        pane.add(welcomeBox1, 1, 0);
 
+        //everything in column 0 (all patient info)
         pane.add(contactLabel, 0, 1);
         pane.add(nameBox, 0, 2);
-        pane.add(DOBBox,0,3);
-        pane.add(emailBox,0,4);
-        pane.add(phoneBox,0,5);
-        pane.add(tableView,0,6);
-        pane.add(cancelBox,1,6);
-        pane.add(saveBox,2,6);
+        pane.add(DOBBox, 0, 3);
+        pane.add(emailBox, 0, 4);
+        pane.add(phoneBox, 0, 5);
+        pane.add(tableView, 0, 6);
+
+        //everything in column 1 (all pharmacy info)
+        pane.add(pharmacyLabel,1,1);
+        pane.add(pharmNameBox,1,2);
+        pane.add(pharmAddressBox,1,3);
+        pane.add(pharmPhoneBox,1,4);
+
+        //everything in column 2 (all insurance info)
+        pane.add(insuranceInformation,2,1);
+        pane.add(insuranceNameBox,2,2);
+        pane.add(insuranceGroupBox,2,3);
+        pane.add(insurancePhoneBox,2,4);
+
+        pane.add(cancelBox, 1, 6);
+        pane.add(saveBox, 2, 6);
 
         //sets color of screen
         pane.setStyle("-fx-background-color: #a2f3f5;");
 
         //EventHandler for saveChanges Button
-		EventHandler addInfoHandle = new addInformationHandler();
-		saveChanges.setOnAction(addInfoHandle);
-		
+        EventHandler addInfoHandle = new addInformationHandler();
+        saveChanges.setOnAction(addInfoHandle);
+
         //Adding containers to scene
-        Scene scene = new Scene(pane, 550, 275);
+        Scene scene = new Scene(pane, 1000, 400);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Create Account");
+        primaryStage.setTitle("Edit Patient Information");
         primaryStage.show();
     }
-    private class addInformationHandler implements EventHandler<ActionEvent>{
-		public void handle(ActionEvent event) {
-			//Patient newPatient = new Patient(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText());
-		
-		}
-	}
+
+    private class addInformationHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent event) {
+            //Patient newPatient = new Patient(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText());
+
+        }
+    }
 }
