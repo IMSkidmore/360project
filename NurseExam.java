@@ -1,7 +1,6 @@
-//patient vitals screen for nurse/doctor
-
 package com.example.demo1;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.paint.Color;
 import javafx.application.Application;
@@ -16,6 +15,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class nurseExam extends Application {
@@ -29,11 +29,13 @@ public class nurseExam extends Application {
         HBox HRandWeightTFBox = new HBox();
         HBox  tempandBloodPressureLabelBox= new HBox();
         HBox  tempandBloodPressureTFBox= new HBox();
-        HBox  HeightLabelBox= new HBox();
-        HBox  HeightTFBox= new HBox();
+        HBox  heightLabelBox= new HBox();
+        HBox  heightTFBox= new HBox();
+        HBox addressBox = new HBox();
+        HBox addressTAandButton = new HBox();
 
 
-        //Initializing the labels
+        //Initializing the labels and tf
         Label heartLabel = new Label("Heart Rate");
         TextField heartTF = new TextField();
         heartTF.setPromptText("BPM");
@@ -70,9 +72,17 @@ public class nurseExam extends Application {
         allergyTF.setMaxWidth(150);
         Label space3 = new Label("                                                            ");
 
+        Label healthHistoryLabel = new Label("History");
+        TextArea healthHistoryTA = new TextArea();
+        healthHistoryTA.setPromptText("Enter previous health issues, previously \nprescribed medication,"
+        + " history of \nimmunization, etc...");
+        healthHistoryTA.setPrefSize(220,300);
+        Label space4 = new Label("                                                        ");
+
 
         //Creation of the "Submit" button
-        Button b = new Button("Submit");
+        Button submit = new Button("Submit");
+        submit.setAlignment(Pos.BASELINE_RIGHT);
 
 
         //Adding the components to their respective container, and setting the spaces
@@ -80,8 +90,10 @@ public class nurseExam extends Application {
         HRandWeightTFBox.getChildren().addAll(heartTF,space1,weigthTF);
         tempandBloodPressureLabelBox.getChildren().addAll(tempLabel,pressureLabel);
         tempandBloodPressureTFBox.getChildren().addAll(tempTF,space2,pressureTF);
-        HeightLabelBox.getChildren().addAll(heightLabel,allergyLabel);
-        HeightTFBox.getChildren().addAll(heightTF,inchTF,space3,allergyTF);
+        heightLabelBox.getChildren().addAll(heightLabel,allergyLabel);
+        heightTFBox.getChildren().addAll(heightTF,inchTF,space3,allergyTF);
+        addressBox.getChildren().add(healthHistoryLabel);
+        addressTAandButton.getChildren().addAll(healthHistoryTA,space4,submit);
 
 
         //This is the container that will contain all the sub-containers created above
@@ -92,10 +104,13 @@ public class nurseExam extends Application {
         pane.add(HRandWeightTFBox,0,1);
         pane.add(tempandBloodPressureLabelBox,0,2);
         pane.add(tempandBloodPressureTFBox,0,3);
-        pane.add(HeightLabelBox,0,4);
-        pane.add(HeightTFBox,0,5);
+        pane.add(heightLabelBox,0,4);
+        pane.add(heightTFBox,0,5);
+        pane.add(addressBox,0,6);
+        pane.add(addressTAandButton,0,7);
 
         pane.setStyle("-fx-background-color: #a2f3f5;");
+
 
         //Adding the major container created above to the scene and setting the scene up
         Scene scene = new Scene(pane, 550, 300);
@@ -108,4 +123,3 @@ public class nurseExam extends Application {
         launch(args);
     }
 }
-
