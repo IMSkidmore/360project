@@ -65,6 +65,8 @@ public class LoginScreenPatient extends StackPane {
 	            		//add switch content here
 	    			} else if (username.getText().equals(tokens[0])) {
 	    				AlertBox.display("Login Error", "Password is incorrect, check capslock");
+	    			} else if(password.getAccessibleText().equals(tokens[1])){
+	    				AlertBox.display("Login Error", "Username is incorrect, check capslock");
 	    			}
 	            }
 	            scanner.close();
@@ -76,7 +78,7 @@ public class LoginScreenPatient extends StackPane {
 	} // end of ButtonHandler
 	private class NewUserHandler implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
-			patientEditInformation pei = new patientEditInformation();
+			PatientEditInformation pei = new PatientEditInformation();
     		pei.start(stageLogin);
 		}
 	}
