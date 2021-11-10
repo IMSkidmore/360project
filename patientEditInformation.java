@@ -38,7 +38,8 @@ public class PatientEditInformation extends Application {
     private TextField nameTF, emailTF, DOBTF, phoneNumTF;
     private TextField pharmacyNameTF, pharmacyAddressTF, pharmacyPhoneNumTF;
     private TextField insuranceNameTF, insuranceGroupNumTF, insurancePhoneNumTF;
-
+    private TextField emergencyEmailTF, emergencyPhoneTF;
+    
     public void start(Stage primaryStage) {
 
         //Sets text at top of screen
@@ -71,6 +72,13 @@ public class PatientEditInformation extends Application {
         phoneNumTF = new TextField();
         phoneNumTF.setPromptText("(XXX)-XXX-XXXX");
         phoneNumTF.setMaxWidth(200);
+        
+
+        //setup of Emergency Info
+        Label emergPhoneNum = new Label("Emergency Phone Number:");
+        emergencyPhoneTF = new TextField();
+        emergencyPhoneTF.setPromptText("(XXX)-XXX-XXXX");
+        emergencyPhoneTF.setMaxWidth(200);
 
         //Initialize labels, textfields, prompts, and size for Pharmacy info
         Label pharmacyLabel = new Label("Pharmacy Information");
@@ -119,7 +127,7 @@ public class PatientEditInformation extends Application {
         VBox headerGraphic = new VBox();
         headerGraphic.setAlignment(Pos.CENTER);
         headerGraphic.getChildren().add(headerLabel);
-
+        
         //add following after patient is implemented/created
         //         <Patient,String>                               <>
         TableColumn firstNameCol = new TableColumn();
@@ -138,7 +146,8 @@ public class PatientEditInformation extends Application {
         HBox DOBBox = new HBox(5);
         HBox emailBox = new HBox(5);
         HBox phoneBox = new HBox(5);
-
+        HBox emergencyPhoneBox = new HBox(5);
+        
         HBox pharmNameBox = new HBox(5);
         HBox pharmAddressBox = new HBox(5);
         HBox pharmPhoneBox = new HBox(5);
@@ -158,7 +167,8 @@ public class PatientEditInformation extends Application {
         DOBBox.getChildren().addAll(DOB, DOBTF);
         emailBox.getChildren().addAll(email, emailTF);
         phoneBox.getChildren().addAll(phoneNum, phoneNumTF);
-
+        emergencyPhoneBox.getChildren().addAll(emergPhoneNum, emergencyPhoneTF);
+        
         pharmNameBox.getChildren().addAll(pharmacyName, pharmacyNameTF);
         pharmAddressBox.getChildren().addAll(pharmacyAddress,pharmacyAddressTF);
         pharmPhoneBox.getChildren().addAll(pharmacyPhoneNum,pharmacyPhoneNumTF);
@@ -183,7 +193,8 @@ public class PatientEditInformation extends Application {
         pane.add(DOBBox, 0, 3);
         pane.add(emailBox, 0, 4);
         pane.add(phoneBox, 0, 5);
-        pane.add(tableView, 0, 6);
+        pane.add(emergencyPhoneBox, 0, 6);
+        pane.add(tableView, 0, 7);
 
         //everything in column 1 (all pharmacy info)
         pane.add(pharmacyLabel,1,1);
@@ -218,7 +229,7 @@ public class PatientEditInformation extends Application {
         public void handle(ActionEvent event) {
             Patient newPatient = new Patient();
             newPatient.newAccount(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText());
-
+            
         }
     }
 }
