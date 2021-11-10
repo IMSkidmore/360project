@@ -1,3 +1,4 @@
+package application;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,8 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class DoctorDashboard extends Application {
-    @Override
-    public void start(Stage stage) throws Exception {
+	@Override
+    public void start(Stage stage){
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #a2f3f5;");
         Label top = new Label("Welcome, Dr.(Insert Name here)");
@@ -44,7 +45,4 @@ public class DoctorDashboard extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
