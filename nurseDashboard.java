@@ -1,3 +1,4 @@
+package application;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,9 +10,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Nurse extends Application {
+public class NurseDashboard extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage){
         GridPane pane = new GridPane();
         pane.setStyle("-fx-background-color: #a2f3f5;");
         pane.setVgap(20);
@@ -41,17 +42,17 @@ public class Nurse extends Application {
         hBox2.getChildren().
                 addAll(new Label("Patient 3"), new Button("Edit Vitals"), new Button("Notes"));
         listView.getItems().addAll(hBox, hBox1, hBox2);
+        
+        
         pane.add(welcome,0,0);
         pane.add(vBox,0,1);
         pane.add(vBox1,1,1);
         pane.add(listView,0,2);
+        
         stage.setScene(new Scene(pane,600,400));
         stage.show();
-
         stage.setTitle("Nurse Dashboard");
 
     }
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 }
