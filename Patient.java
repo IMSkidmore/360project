@@ -1,3 +1,4 @@
+package application;
 public class Patient
 {
     //makes Patient object
@@ -8,7 +9,7 @@ public class Patient
     protected int heartRate, feet, bloodPressure, age;
     protected double temp, weight, inches;
     protected char gender;
-
+    protected Pharmacy phm;
 
     private void Patient()
     {
@@ -33,6 +34,7 @@ public class Patient
         inches = 0.0;
 
         gender = 'a';
+        phm = new Pharmacy();
     }
     private void Patient(String name,String phoneNum,String email,String emergencyPhone,String emergencyEmail,
                             String dob,String checkupHistory,String physicalResults,String prescribedMeds,
@@ -65,7 +67,8 @@ public class Patient
         //char
         this.gender = gender;
     }
-    //setters for all patient variablesprivate void setName(String newName)
+    //setters for all patient variablesprivate 
+    void setName(String newName)
     {
         name = newName;
     }
@@ -241,4 +244,12 @@ public class Patient
     {
         return inches;
     }
+	public void newAccount(String name, String DOB, String email, String phone, String emgPhone) {
+		this.name = name;
+		this.dob = DOB;
+		this.email = email;
+		this.phoneNum = phone;
+		this.emergencyPhone = emgPhone;
+		
+	}
 }
