@@ -228,7 +228,7 @@ public class PatientEditInformation extends Application {
     private class addInformationHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
             Patient newPatient = new Patient();
-            newPatient.newAccount(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText());
+            newPatient.newAccount(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText(),emergencyPhoneTF.getText());
             
         }
     }
