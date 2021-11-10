@@ -33,7 +33,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class patientEditInformation extends Application {
+public class PatientEditInformation extends Application {
 
     private TextField nameTF, emailTF, DOBTF, phoneNumTF;
     private TextField pharmacyNameTF, pharmacyAddressTF, pharmacyPhoneNumTF;
@@ -216,7 +216,8 @@ public class patientEditInformation extends Application {
 
     private class addInformationHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
-            //Patient newPatient = new Patient(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText());
+            Patient newPatient = new Patient();
+            newPatient.newAccount(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText());
 
         }
     }
