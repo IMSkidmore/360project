@@ -75,10 +75,10 @@ public class FileManipulator {
 			
 			int i = 0;
 			for (String s : array) {
-				if(i >= 5) {
+				if(i >= 11) {
 					bufferwrite.write(s);
 				}
-				else if(i < 5) {
+				else if(i < 11) {
 					bufferwrite.write(s + ",");
 				}
 				i++;
