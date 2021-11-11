@@ -45,7 +45,7 @@ public class PatientEditInformation extends Application {
 
         //Sets text at top of screen
     	stageEdit = primaryStage;
-        Text sceneTitle1 = new Text("Welcome \"Patient Name\"");
+        Text sceneTitle1 = new Text("Welcome");
         sceneTitle1.setFont(Font.font("Tacoma", FontWeight.NORMAL, 20));
         HBox welcomeBox1 = new HBox(10);
         welcomeBox1.setAlignment(Pos.TOP_CENTER);
