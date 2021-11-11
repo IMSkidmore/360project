@@ -71,12 +71,10 @@ public class Patient
     	this.emergencyPhone = emergencyNum;
     	this.dob = dob;
     	this.gender = gender;
+    	String[] newDOB = dob.split("/");
+    	id = name + newDOB[0] + newDOB[1]  + newDOB[2];
     }
     //setters for all patient variablesprivate 
-    void setID(String newName)
-    {
-        name = newName;
-    }
     void setName(String newName)
     {
         name = newName;
@@ -242,6 +240,10 @@ public class Patient
     private String getInches()
     {
         return inches;
+    }
+    
+    private String getID() {
+    	return id;
     }
 	public void newAccount(String name, String DOB, String email, String phone, String emgPhone) {
 		this.name = name;
