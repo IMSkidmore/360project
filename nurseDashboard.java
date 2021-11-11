@@ -18,7 +18,7 @@ public class NurseDashboard extends Application {
         pane.setVgap(20);
         pane.setHgap(20);
 
-        Label welcome = new Label("Welcome 'Nurse Name here'!");
+        Label welcome = new Label("Welcome!");
         welcome.setStyle("-fx-font-size: 20px");
         Label checkIn = new Label("Check in patient");
         Label checkInNew = new Label("Check in new patient");
@@ -53,6 +53,6 @@ public class NurseDashboard extends Application {
         stage.show();
         stage.setTitle("Nurse Dashboard");
 
-    }
+    }//Add Create New Patient button. Replace check in patient Combo box with a button to add whats in the Patient combo box to the table view 
 
 }
