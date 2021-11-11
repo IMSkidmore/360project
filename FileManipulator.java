@@ -9,10 +9,15 @@ public class FileManipulator {
 	}
 
 	public void writeFileContents(String fileName, ArrayList<String> array) throws IOException {
+		File file = new File("src/application/"+fileName + ".txt");
+		if(file.exists() == false) {
+			file.createNewFile();
+		}
 		FileWriter filewrite;
 		try {
-			filewrite = new FileWriter(fileName, true);
-
+			filewrite = new FileWriter("src/application/"+fileName+".txt", true);
+			
+			
 			// Initialing BufferedWriter
 			BufferedWriter bufferwrite = new BufferedWriter(filewrite);
 			for (String s : array) {
@@ -27,7 +32,7 @@ public class FileManipulator {
 	}
 
 	public ArrayList<String> readFileContents(String fileName) throws IOException{
-		 File fi = new File(fileName); 
+		 File fi = new File("src/application"+fileName+".txt"); 
 		 
 		 BufferedReader br = new BufferedReader(new FileReader(fi)); 
 		 
@@ -50,8 +55,8 @@ public class FileManipulator {
 	}
 	
 	public ArrayList<String[]> readFilePatientHistory(String id) throws IOException{
+		
 		 File fi = new File("src/application/" + id + ".txt"); 
-		 
 		 BufferedReader br = new BufferedReader(new FileReader(fi)); 
 		 
 		 ArrayList<String[]> fileContents = new ArrayList<String[]>();
