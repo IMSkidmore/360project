@@ -2,17 +2,16 @@ package application;
 public class Patient
 {
     //makes Patient object
-    Patient p = new Patient();
-
-    protected String name, phoneNum, email, emergencyPhone,emergencyEmail,dob;
+    protected String id,name, phoneNum, email, emergencyPhone,emergencyEmail,dob;
     protected String checkupHistory, physicalResults, prescribedMeds, healthHistory;
-    protected int heartRate, feet, bloodPressure, age;
-    protected double temp, weight, inches;
-    protected char gender;
-    protected Pharmacy phm;
+    protected String heartRate, feet, bloodPressure;
+    protected String temp, weight, inches;
+    protected String gender;
+    protected String age;
 
     private void Patient()
     {
+    	id = "";
         name = "";
         phoneNum = "";
         email = "";
@@ -24,24 +23,24 @@ public class Patient
         prescribedMeds = "";
         healthHistory = "";
 
-        heartRate = 0;
-        feet = 0;
-        bloodPressure = 0;
-        age = 0;
+        heartRate = "";
+        feet = "";
+        bloodPressure = "";
+        age = "";
 
-        temp = 0.0;
-        weight = 0.0;
-        inches = 0.0;
+        temp = "";
+        weight = "";
+        inches = "";
 
-        gender = 'a';
-        phm = new Pharmacy();
+        gender = "";
     }
     private void Patient(String name,String phoneNum,String email,String emergencyPhone,String emergencyEmail,
                             String dob,String checkupHistory,String physicalResults,String prescribedMeds,
-                            String healthHistory, int heartRate, int feet, int bloodPressure, int age, double temp,
-                            double weight, double inches, char gender)
+                            String healthHistory, String heartRate, String feet, String bloodPressure, String temp,
+                            String weight, String inches, String gender)
     {
         //strings
+    	this.id = name+dob;
         this.name = name;
         this.phoneNum = phoneNum;
         this.email = email;
@@ -68,6 +67,10 @@ public class Patient
         this.gender = gender;
     }
     //setters for all patient variablesprivate 
+    void setID(String newName)
+    {
+        name = newName;
+    }
     void setName(String newName)
     {
         name = newName;
@@ -118,42 +121,42 @@ public class Patient
         healthHistory = newHealthHistory;
     }
 
-    private void setHeartRate(int newHeartRate)
+    private void setHeartRate(String newHeartRate)
     {
         heartRate = newHeartRate;
     }
 
-    private void setFeet(int newFeet)
+    private void setFeet(String newFeet)
     {
         feet = newFeet;
     }
 
-    private void setBloodPressure(int newBloodPressure)
+    private void setBloodPressure(String newBloodPressure)
     {
         bloodPressure = newBloodPressure;
     }
 
-    private void setAge (int newAge)
+    private void setAge (String newAge)
     {
         age = newAge;
     }
 
-    private void setTemp(double newTemp)
+    private void setTemp(String newTemp)
     {
         temp = newTemp;
     }
 
-    private void setWeight(double newWeight)
+    private void setWeight(String newWeight)
     {
         weight = newWeight;
     }
 
-    private void setInches(double newInches)
+    private void setInches(String newInches)
     {
         inches = newInches;
     }
 
-    private void setGender(char newGen)
+    private void setGender(String newGen)
     {
         gender = newGen;
     }
@@ -210,37 +213,37 @@ public class Patient
         return healthHistory;
     }
 
-    private int getHeartRate()
+    private String getHeartRate()
     {
         return heartRate;
     }
 
-    private int getFeet()
+    private String getFeet()
     {
         return feet;
     }
 
-    private int getBloodPressure()
+    private String getBloodPressure()
     {
         return bloodPressure;
     }
 
-    private int getAge()
+    private String getAge()
     {
         return age;
     }
 
-    private double getTemp()
+    private String getTemp()
     {
         return temp;
     }
 
-    private double getWeight()
+    private String getWeight()
     {
         return weight;
     }
 
-    private double getInches()
+    private String getInches()
     {
         return inches;
     }
@@ -251,5 +254,9 @@ public class Patient
 		this.phoneNum = phone;
 		this.emergencyPhone = emgPhone;
 		
+	}
+	private int getFloorAge() {
+		//Calculate age. floor. Use "01/02/2000". Parser string to int. 
+		return 0;
 	}
 }
