@@ -244,6 +244,9 @@ public class PatientEditInformation extends Application {
     private class addInformationHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
             Patient newPatient = new Patient(nameTF.getText(),phoneNumTF.getText(),emailTF.getText(),emergencyPhoneTF.getText(),DOBTF.getText(),gender.getValue());            
+            newPatient.setPharmacyName(pharmacyNameTF.getText());
+            newPatient.setPharmacyAddress(pharmacyAddressTF.getText());
+            newPatient.setPharmacyNum(pharmacyPhoneNumTF.getText());
             FileManipulator fm = new FileManipulator();
             try {
 				fm.writeFileContentsPatientInfo(newPatient.addPatientInfo());
