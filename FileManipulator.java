@@ -15,7 +15,6 @@ public class FileManipulator {
 
 			// Initialing BufferedWriter
 			BufferedWriter bufferwrite = new BufferedWriter(filewrite);
-
 			for (String s : array) {
 				bufferwrite.write(s);
 				bufferwrite.newLine();
@@ -60,6 +59,31 @@ public class FileManipulator {
 		 while ((st = br.readLine()) != null) 
 			 fileContents.add(Parser.lineToHistoryArray(st));
 		return fileContents;
+	}
+	public void writeFileContentsPatientInfo(ArrayList<String> array) throws IOException {
+		FileWriter filewrite;
+		try {
+			filewrite = new FileWriter("src/application/PatientInfo.txt", true);
+
+			// Initialing BufferedWriter
+			BufferedWriter bufferwrite = new BufferedWriter(filewrite);
+			
+			int i = 0;
+			for (String s : array) {
+				if(i >= 5) {
+					bufferwrite.write(s);
+				}
+				else if(i < 5) {
+					bufferwrite.write(s + ",");
+				}
+				i++;
+			}
+			bufferwrite.newLine();
+
+			bufferwrite.close();
+		} catch (IOException excpt) {
+			excpt.printStackTrace();
+		}
 	}
 	
 }
