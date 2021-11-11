@@ -2,269 +2,252 @@ package application;
 
 import java.util.ArrayList;
 
-public class Patient
-{
-    //makes Patient object
-    protected String id,name, phoneNum, email, emergencyPhone,dob;
-    protected String checkupHistory, physicalResults, prescribedMeds, healthHistory;
-    protected String heartRate, feet, bloodPressure;
-    protected String temp, weight, inches;
-    protected String gender;
-    protected String age;
-    protected Pharmacy phm;
-    
-    public Patient()
-    {
-    	id = "";
-        name = "";
-        phoneNum = "";
-        email = "";
-        emergencyPhone = "";
-        dob = "";
-        checkupHistory = "";
-        physicalResults = "";
-        prescribedMeds = "";
-        healthHistory = "";
+public class Patient {
+	// makes Patient object
+	protected String id, name, phoneNum, email, emergencyPhone, dob;
+	protected String checkupHistory, physicalResults, prescribedMeds, healthHistory;
+	protected String heartRate, feet, bloodPressure;
+	protected String temp, weight, inches;
+	protected String gender;
+	protected String age;
+	protected Pharmacy phm;
 
-        heartRate = "";
-        feet = "";
-        bloodPressure = "";
-        age = "";
+	public Patient() {
+		id = "";
+		name = "";
+		phoneNum = "";
+		email = "";
+		emergencyPhone = "";
+		dob = "";
+		checkupHistory = "";
+		physicalResults = "";
+		prescribedMeds = "";
+		healthHistory = "";
 
-        temp = "";
-        weight = "";
-        inches = "";
+		heartRate = "";
+		feet = "";
+		bloodPressure = "";
+		age = "";
 
-        gender = "";
-        phm = new Pharmacy();
-    }
-    private Patient(String name,String phoneNum,String email,String emergencyPhone,
-                            String dob,String checkupHistory,String physicalResults,String prescribedMeds,
-                            String healthHistory, String heartRate, String feet, String bloodPressure, String temp,
-                            String weight, String inches, String gender)
-    {
-        //strings
-    	this.id = name+dob;
-        this.name = name;
-        this.phoneNum = phoneNum;
-        this.email = email;
-        this.emergencyPhone = emergencyPhone;
-        this.dob = dob;
-        this.checkupHistory = checkupHistory;
-        this.physicalResults = physicalResults;
-        this.prescribedMeds = prescribedMeds;
-        this.healthHistory = healthHistory;
+		temp = "";
+		weight = "";
+		inches = "";
 
-        //ints
-        this.heartRate = heartRate;
-        this.feet = feet;
-        this.bloodPressure = bloodPressure;
-        this.age = age;
+		gender = "";
+		phm = new Pharmacy();
+	}
 
-        //doubles
-        this.temp = temp;
-        this.weight = weight;
-        this.inches = inches;
+	private Patient(String name, String phoneNum, String email, String emergencyPhone, String dob,
+			String checkupHistory, String physicalResults, String prescribedMeds, String healthHistory,
+			String heartRate, String feet, String bloodPressure, String temp, String weight, String inches,
+			String gender) {
+		// strings
+		this.id = name + dob;
+		this.name = name;
+		this.phoneNum = phoneNum;
+		this.email = email;
+		this.emergencyPhone = emergencyPhone;
+		this.dob = dob;
+		this.checkupHistory = checkupHistory;
+		this.physicalResults = physicalResults;
+		this.prescribedMeds = prescribedMeds;
+		this.healthHistory = healthHistory;
 
-        //char
-        this.gender = gender;
-    }
-    public Patient(String name, String phoneNum, String email, String emergencyNum,String dob, String gender) {
-    	this.name = name;
-    	this.phoneNum = phoneNum;
-    	this.email = email;
-    	this.emergencyPhone = emergencyNum;
-    	this.dob = dob;
-    	this.gender = gender;
-    	String[] newDOB = dob.split("/");
-    	id = name + newDOB[0] + newDOB[1]  + newDOB[2];
-    	phm = new Pharmacy();
-    }
-    //setters for all patient variablesprivate 
-    void setName(String newName)
-    {
-        name = newName;
-    }
+		// ints
+		this.heartRate = heartRate;
+		this.feet = feet;
+		this.bloodPressure = bloodPressure;
+		this.age = age;
 
-    private void setPhoneNum(String newPhoneNum)
-    {
-        phoneNum = newPhoneNum;
-    }
+		// doubles
+		this.temp = temp;
+		this.weight = weight;
+		this.inches = inches;
 
-    private void setEmergencyPhone(String newEmergencyPhone)
-    {
-        emergencyPhone = newEmergencyPhone;
-    }
+		// char
+		this.gender = gender;
+	}
 
-    private void setEmail(String newEmail)
-    {
-        email = newEmail;
-    }
+	public Patient(String name, String phoneNum, String email, String emergencyNum, String dob, String gender) {
+		this.name = name;
+		this.phoneNum = phoneNum;
+		this.email = email;
+		this.emergencyPhone = emergencyNum;
+		this.dob = dob;
+		this.gender = gender;
+		String[] newDOB = dob.split("/");
+		id = name + newDOB[0] + newDOB[1] + newDOB[2];
+		phm = new Pharmacy();
+		checkupHistory = "";
+		physicalResults = "";
+		prescribedMeds = "";
+		healthHistory = "";
 
-    private void setDob(String newDob)
-    {
-        dob = newDob;
-    }
+		heartRate = "";
+		feet = "";
+		bloodPressure = "";
+		age = "";
 
-    private void setCheckupHistory(String newCheckupHistory)
-    {
-        checkupHistory = newCheckupHistory;
-    }
+		temp = "";
+		weight = "";
+		inches = "";
+	}
 
-    private void setPhysicalResults (String newPhysicalResults)
-    {
-        physicalResults = newPhysicalResults;
-    }
+	// setters for all patient variablesprivate
+	void setName(String newName) {
+		name = newName;
+	}
 
-    private void setPrescribedMeds(String newPrescribedMeds)
-    {
-        prescribedMeds = newPrescribedMeds;
-    }
+	private void setPhoneNum(String newPhoneNum) {
+		phoneNum = newPhoneNum;
+	}
 
-    private void setHealthHistory(String newHealthHistory)
-    {
-        healthHistory = newHealthHistory;
-    }
+	private void setEmergencyPhone(String newEmergencyPhone) {
+		emergencyPhone = newEmergencyPhone;
+	}
 
-    private void setHeartRate(String newHeartRate)
-    {
-        heartRate = newHeartRate;
-    }
+	private void setEmail(String newEmail) {
+		email = newEmail;
+	}
 
-    private void setFeet(String newFeet)
-    {
-        feet = newFeet;
-    }
+	private void setDob(String newDob) {
+		dob = newDob;
+	}
 
-    private void setBloodPressure(String newBloodPressure)
-    {
-        bloodPressure = newBloodPressure;
-    }
+	private void setCheckupHistory(String newCheckupHistory) {
+		checkupHistory = newCheckupHistory;
+	}
 
-    private void setAge (String newAge)
-    {
-        age = newAge;
-    }
+	private void setPhysicalResults(String newPhysicalResults) {
+		physicalResults = newPhysicalResults;
+	}
 
-    private void setTemp(String newTemp)
-    {
-        temp = newTemp;
-    }
+	private void setPrescribedMeds(String newPrescribedMeds) {
+		prescribedMeds = newPrescribedMeds;
+	}
 
-    private void setWeight(String newWeight)
-    {
-        weight = newWeight;
-    }
+	private void setHealthHistory(String newHealthHistory) {
+		healthHistory = newHealthHistory;
+	}
 
-    private void setInches(String newInches)
-    {
-        inches = newInches;
-    }
+	private void setHeartRate(String newHeartRate) {
+		heartRate = newHeartRate;
+	}
 
-    private void setGender(String newGen)
-    {
-        gender = newGen;
-    }
-    void setPharmacyName(String phmName) {
-    	phm.setComp(phmName);
-    }
-    void setPharmacyAddress(String phmAddress) {
-    	phm.setAdd(phmAddress);
-    }
-    void setPharmacyNum(String phmNum) {
-    	phm.setNum(phmNum);
-    }
+	private void setFeet(String newFeet) {
+		feet = newFeet;
+	}
 
+	private void setBloodPressure(String newBloodPressure) {
+		bloodPressure = newBloodPressure;
+	}
 
+	private void setAge(String newAge) {
+		age = newAge;
+	}
 
-    //getters for all patient variables
-    private String getName()
-    {
-        return name;
-    }
+	private void setTemp(String newTemp) {
+		temp = newTemp;
+	}
 
-    private String getPhoneNum()
-    {
-        return phoneNum;
-    }
+	private void setWeight(String newWeight) {
+		weight = newWeight;
+	}
 
-    private String getEmergencyPhone()
-    {
-        return emergencyPhone;
-    }
+	private void setInches(String newInches) {
+		inches = newInches;
+	}
 
-    private String getEmail()
-    {
-        return email;
-    }
+	private void setGender(String newGen) {
+		gender = newGen;
+	}
 
-    private String getDob()
-    {
-        return dob;
-    }
+	void setPharmacyName(String phmName) {
+		phm.setComp(phmName);
+	}
 
-    private String getCheckupHistory()
-    {
-        return checkupHistory;
-    }
+	void setPharmacyAddress(String phmAddress) {
+		phm.setAdd(phmAddress);
+	}
 
-    private String getPhysicalResults()
-    {
-        return physicalResults;
-    }
+	void setPharmacyNum(String phmNum) {
+		phm.setNum(phmNum);
+	}
 
-    private String getPrescribedMeds()
-    {
-        return prescribedMeds;
-    }
+	// getters for all patient variables
+	private String getName() {
+		return name;
+	}
 
-    private String getHealthHistory()
-    {
-        return healthHistory;
-    }
+	private String getPhoneNum() {
+		return phoneNum;
+	}
 
-    private String getHeartRate()
-    {
-        return heartRate;
-    }
+	private String getEmergencyPhone() {
+		return emergencyPhone;
+	}
 
-    private String getFeet()
-    {
-        return feet;
-    }
+	private String getEmail() {
+		return email;
+	}
 
-    private String getBloodPressure()
-    {
-        return bloodPressure;
-    }
+	private String getDob() {
+		return dob;
+	}
 
-    private String getAge()
-    {
-        return age;
-    }
+	private String getCheckupHistory() {
+		return checkupHistory;
+	}
 
-    private String getTemp()
-    {
-        return temp;
-    }
+	private String getPhysicalResults() {
+		return physicalResults;
+	}
 
-    private String getWeight()
-    {
-        return weight;
-    }
+	private String getPrescribedMeds() {
+		return prescribedMeds;
+	}
 
-    private String getInches()
-    {
-        return inches;
-    }
-    
-    private String getID() {
-    	return id;
-    }
+	private String getHealthHistory() {
+		return healthHistory;
+	}
+
+	private String getHeartRate() {
+		return heartRate;
+	}
+
+	private String getFeet() {
+		return feet;
+	}
+
+	private String getBloodPressure() {
+		return bloodPressure;
+	}
+
+	private String getAge() {
+		return age;
+	}
+
+	private String getTemp() {
+		return temp;
+	}
+
+	private String getWeight() {
+		return weight;
+	}
+
+	private String getInches() {
+		return inches;
+	}
+
+	private String getID() {
+		return id;
+	}
+
 	private int getFloorAge() {
-		//Calculate age. floor. Use "01/02/2000". Parser string to int. 
+		// Calculate age. floor. Use "01/02/2000". Parser string to int.
 		return 0;
 	}
+
 	public ArrayList<String> addPatientInfo() {
 		ArrayList<String> ret = new ArrayList<String>();
 		ret.add(name);
