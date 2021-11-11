@@ -2,6 +2,15 @@ package application;
 
 public class Parser {
 
+	public static boolean dobFormated(String dob) {
+		try {
+	    	String[] newDOB = dob.split("/");
+	    	String id = newDOB[0] + newDOB[1]  + newDOB[2];
+	    	return true;
+		}catch(ArrayIndexOutOfBoundsException exception) {
+			return false;
+		}
+	}
 	public static int stringToInt(String str) {
 		int ret = Integer.parseInt(str);
 		return ret;
