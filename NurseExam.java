@@ -1,4 +1,4 @@
-package com.example.demo1;
+package application;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.TextInputDialog;
@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-public class nurseExam extends Application {
+public class NurseExam extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -89,7 +89,7 @@ public class nurseExam extends Application {
         HRandWeightLabelBox.getChildren().addAll(heartLabel,weightLabel);
         HRandWeightTFBox.getChildren().addAll(heartTF,space1,weigthTF);
         tempandBloodPressureLabelBox.getChildren().addAll(tempLabel,pressureLabel);
-        tempandBloodPressureTFBox.getChildren().addAll(tempTF,space2,pressureTF);
+        tempandBloodPressureTFBox.getChildren().addAll(tempTF,space2,pressureTF);//CHECK AGE of Patient before passing, check in button handler
         heightLabelBox.getChildren().addAll(heightLabel,allergyLabel);
         heightTFBox.getChildren().addAll(heightTF,inchTF,space3,allergyTF);
         addressBox.getChildren().add(healthHistoryLabel);
@@ -119,11 +119,16 @@ public class nurseExam extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
-
+/*
+ * if(Patient.getAge() < 12){
+ * 
+ * Alertbox.setasdfasdglasdlkfnasdl;f
+ * 
+ * pt.setPressure("N/A")//-1;
+ * 
+ * }
+ */
 /*TODO
 -Change class so it is a working screen in main
 -Impliment this code so it updates the patient object
