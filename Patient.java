@@ -5,11 +5,12 @@ import java.util.ArrayList;
 public class Patient {
 	// makes Patient object
 	protected String id, name, phoneNum, email, emergencyPhone, dob;
-	protected String checkupHistory, physicalResults, prescribedMeds, healthHistory;
+	protected String checkupDate, physicalResults, prescribedMeds, healthHistory;
 	protected String heartRate, feet, bloodPressure;
 	protected String temp, weight, inches;
 	protected String gender;
 	protected String age;
+	protected String insurName, insurGroup, insurNum;
 	protected Pharmacy phm;
 
 	public Patient() {
@@ -19,7 +20,7 @@ public class Patient {
 		email = "";
 		emergencyPhone = "";
 		dob = "";
-		checkupHistory = "";
+		checkupDate = "";
 		physicalResults = "";
 		prescribedMeds = "";
 		healthHistory = "";
@@ -34,11 +35,15 @@ public class Patient {
 		inches = "";
 
 		gender = "";
+		
+		insurName = "";
+		insurGroup = "";
+		insurNum = "";
 		phm = new Pharmacy();
 	}
 
 	private Patient(String name, String phoneNum, String email, String emergencyPhone, String dob,
-			String checkupHistory, String physicalResults, String prescribedMeds, String healthHistory,
+			String checkupDate, String physicalResults, String prescribedMeds, String healthHistory,
 			String heartRate, String feet, String bloodPressure, String temp, String weight, String inches,
 			String gender) {
 		// strings
@@ -48,7 +53,7 @@ public class Patient {
 		this.email = email;
 		this.emergencyPhone = emergencyPhone;
 		this.dob = dob;
-		this.checkupHistory = checkupHistory;
+		this.checkupDate = checkupDate;
 		this.physicalResults = physicalResults;
 		this.prescribedMeds = prescribedMeds;
 		this.healthHistory = healthHistory;
@@ -68,7 +73,7 @@ public class Patient {
 		this.gender = gender;
 	}
 
-	public Patient(String name, String phoneNum, String email, String emergencyNum, String dob, String gender) {
+	public Patient(String name, String phoneNum, String email, String emergencyNum, String dob, String gender, String phmName, String phmAddress, String phmNum, String insurName, String insurGroup, String insurNum) {
 		this.name = name;
 		this.phoneNum = phoneNum;
 		this.email = email;
@@ -77,8 +82,8 @@ public class Patient {
 		this.gender = gender;
 		String[] newDOB = dob.split("/");
 		id = name + newDOB[0] + newDOB[1] + newDOB[2];
-		phm = new Pharmacy();
-		checkupHistory = "";
+		phm = new Pharmacy(phmName,phmAddress,phmNum);
+		checkupDate = "";
 		physicalResults = "";
 		prescribedMeds = "";
 		healthHistory = "";
@@ -91,6 +96,10 @@ public class Patient {
 		temp = "";
 		weight = "";
 		inches = "";
+		
+		this.insurName = insurName;
+		this.insurGroup = insurGroup;
+		this.insurNum = insurNum;
 	}
 
 	// setters for all patient variablesprivate
@@ -115,7 +124,7 @@ public class Patient {
 	}
 
 	private void setCheckupHistory(String newCheckupHistory) {
-		checkupHistory = newCheckupHistory;
+		checkupDate = newCheckupHistory;
 	}
 
 	private void setPhysicalResults(String newPhysicalResults) {
@@ -162,18 +171,6 @@ public class Patient {
 		gender = newGen;
 	}
 
-	void setPharmacyName(String phmName) {
-		phm.setComp(phmName);
-	}
-
-	void setPharmacyAddress(String phmAddress) {
-		phm.setAdd(phmAddress);
-	}
-
-	void setPharmacyNum(String phmNum) {
-		phm.setNum(phmNum);
-	}
-
 	// getters for all patient variables
 	private String getName() {
 		return name;
@@ -196,7 +193,7 @@ public class Patient {
 	}
 
 	private String getCheckupHistory() {
-		return checkupHistory;
+		return checkupDate;
 	}
 
 	private String getPhysicalResults() {
@@ -256,6 +253,12 @@ public class Patient {
 		ret.add(emergencyPhone);
 		ret.add(dob);
 		ret.add(gender);
+		ret.add(phm.getComp());
+		ret.add(phm.getAdd());
+		ret.add(phm.getNum());
+		ret.add(insurName);
+		ret.add(insurGroup);
+		ret.add(insurNum);
 		return ret;
 	}
 }
