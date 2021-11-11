@@ -1,8 +1,6 @@
 package application;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class FileManipulator {
@@ -10,7 +8,7 @@ public class FileManipulator {
 
 	}
 
-	public void writeFileContents(String fileName, ArrayList<String >array) throws IOException {
+	public void writeFileContents(String fileName, ArrayList<String> array) throws IOException {
 		FileWriter filewrite;
 		try {
 			filewrite = new FileWriter(fileName);
@@ -21,12 +19,24 @@ public class FileManipulator {
 			for (String s : array) {
 				bufferwrite.write(s);
 				bufferwrite.newLine();
-		    }
-			
+			}
+
 			bufferwrite.close();
 			System.out.println("Written successfully");
 		} catch (IOException excpt) {
 			excpt.printStackTrace();
 		}
+	}
+
+	public ArrayList<String> readFileContents(String fileName) throws IOException{
+		 File fi = new File(fileName); 
+		 
+		 BufferedReader br = new BufferedReader(new FileReader(fi)); 
+		 
+		 ArrayList<String> fileContents = new ArrayList<String>();
+		 String st;
+		 while ((st = br.readLine()) != null) 
+			 fileContents.add(st);
+		return fileContents;
 	}
 }
