@@ -247,6 +247,14 @@ public class PatientEditInformation extends Application {
             FileManipulator fm = new FileManipulator();
             try {
 				fm.writeFileContentsPatientInfo(newPatient.addPatientInfo());
+				AlertBox.display("Success", "Your account was created");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            Main mn = new Main();
+            try {
+				mn.start(stageEdit);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
