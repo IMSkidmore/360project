@@ -243,10 +243,7 @@ public class PatientEditInformation extends Application {
 
     private class addInformationHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
-            Patient newPatient = new Patient(nameTF.getText(),phoneNumTF.getText(),emailTF.getText(),emergencyPhoneTF.getText(),DOBTF.getText(),gender.getValue());            
-            newPatient.setPharmacyName(pharmacyNameTF.getText());
-            newPatient.setPharmacyAddress(pharmacyAddressTF.getText());
-            newPatient.setPharmacyNum(pharmacyPhoneNumTF.getText());
+            Patient newPatient = new Patient(nameTF.getText(),phoneNumTF.getText(),emailTF.getText(),emergencyPhoneTF.getText(),DOBTF.getText(),gender.getValue(),pharmacyNameTF.getText(),pharmacyAddressTF.getText(),pharmacyPhoneNumTF.getText(),insuranceNameTF.getText(), insuranceGroupNumTF.getText(),insurancePhoneNumTF.getText());            
             FileManipulator fm = new FileManipulator();
             try {
 				fm.writeFileContentsPatientInfo(newPatient.addPatientInfo());
@@ -258,9 +255,13 @@ public class PatientEditInformation extends Application {
     }
     private class cancelHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
-            LoginScreenPatient loginPatient = new LoginScreenPatient(stageEdit,400,600);
-            Scene sceneChange = new Scene(loginPatient,400,600);
-            stageEdit.setScene(sceneChange);
+            Main mn = new Main();
+            try {
+				mn.start(stageEdit);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             
         }
     }
