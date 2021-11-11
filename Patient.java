@@ -9,7 +9,7 @@ public class Patient
     protected String gender;
     protected String age;
 
-    private void Patient()
+    public Patient()
     {
     	id = "";
         name = "";
@@ -33,7 +33,7 @@ public class Patient
 
         gender = "";
     }
-    private void Patient(String name,String phoneNum,String email,String emergencyPhone,
+    private Patient(String name,String phoneNum,String email,String emergencyPhone,
                             String dob,String checkupHistory,String physicalResults,String prescribedMeds,
                             String healthHistory, String heartRate, String feet, String bloodPressure, String temp,
                             String weight, String inches, String gender)
