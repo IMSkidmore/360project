@@ -19,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
@@ -38,12 +39,13 @@ public class PatientEditInformation extends Application {
     private TextField nameTF, emailTF, DOBTF, phoneNumTF;
     private TextField pharmacyNameTF, pharmacyAddressTF, pharmacyPhoneNumTF;
     private TextField insuranceNameTF, insuranceGroupNumTF, insurancePhoneNumTF;
-    private TextField emergencyEmailTF, emergencyPhoneTF;
+    private TextField emergencyPhoneTF;
+    private ComboBox<String> gender;
     private Stage stageEdit;
     
     public void start(Stage primaryStage) {
 
-        //Sets text at top of screen
+        //Sets text at top of screens
     	stageEdit = primaryStage;
         Text sceneTitle1 = new Text("Welcome");
         sceneTitle1.setFont(Font.font("Tacoma", FontWeight.NORMAL, 20));
@@ -82,6 +84,11 @@ public class PatientEditInformation extends Application {
         emergencyPhoneTF.setPromptText("(XXX)-XXX-XXXX");
         emergencyPhoneTF.setMaxWidth(200);
 
+        //Gender
+        gender = new ComboBox<String>();
+        gender.setPromptText("Gender");
+        gender.getItems().addAll("Male","Female");
+        
         //Initialize labels, textfields, prompts, and size for Pharmacy info
         Label pharmacyLabel = new Label("Pharmacy Information");
 
@@ -149,6 +156,7 @@ public class PatientEditInformation extends Application {
         HBox emailBox = new HBox(5);
         HBox phoneBox = new HBox(5);
         HBox emergencyPhoneBox = new HBox(5);
+        HBox genderBox = new HBox(5);
         
         HBox pharmNameBox = new HBox(5);
         HBox pharmAddressBox = new HBox(5);
@@ -170,6 +178,7 @@ public class PatientEditInformation extends Application {
         emailBox.getChildren().addAll(email, emailTF);
         phoneBox.getChildren().addAll(phoneNum, phoneNumTF);
         emergencyPhoneBox.getChildren().addAll(emergPhoneNum, emergencyPhoneTF);
+        genderBox.getChildren().addAll(gender);
         
         pharmNameBox.getChildren().addAll(pharmacyName, pharmacyNameTF);
         pharmAddressBox.getChildren().addAll(pharmacyAddress,pharmacyAddressTF);
@@ -196,7 +205,8 @@ public class PatientEditInformation extends Application {
         pane.add(emailBox, 0, 4);
         pane.add(phoneBox, 0, 5);
         pane.add(emergencyPhoneBox, 0, 6);
-        pane.add(tableView, 0, 7);
+        pane.add(genderBox,0,7);
+        pane.add(tableView, 0, 8);
 
         //everything in column 1 (all pharmacy info)
         pane.add(pharmacyLabel,1,1);
@@ -233,9 +243,14 @@ public class PatientEditInformation extends Application {
 
     private class addInformationHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
-            Patient newPatient = new Patient();
-            newPatient.newAccount(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText(),emergencyPhoneTF.getText());
-            
+            Patient newPatient = new Patient(nameTF.getText(),phoneNumTF.getText(),emailTF.getText(),emergencyPhoneTF.getText(),DOBTF.getText(),gender.getValue());            
+            FileManipulator fm = new FileManipulator();
+            try {
+				fm.writeFileContentsPatientInfo(newPatient.addPatientInfo());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }
     private class cancelHandler implements EventHandler<ActionEvent> {
