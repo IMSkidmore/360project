@@ -7,7 +7,7 @@ public class FileManipulator {
 	public FileManipulator() {
 
 	}
-
+	//Pass in just the name of the file exluding the .txt. Should create new file if it does not exist.
 	public void writeFileContents(String fileName, ArrayList<String> array) throws IOException {
 		File file = new File("src/application/"+fileName + ".txt");
 		if(file.exists() == false) {
@@ -31,7 +31,7 @@ public class FileManipulator {
 		}
 	}
 
-	public ArrayList<String> readFileContents(String fileName) throws IOException{
+	public ArrayList<String> readFileContents(String fileName) throws IOException{//Pass in just the fileName exluding the .txt
 		 File fi = new File("src/application"+fileName+".txt"); 
 		 
 		 BufferedReader br = new BufferedReader(new FileReader(fi)); 
