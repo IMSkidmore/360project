@@ -2,7 +2,7 @@ package application;
 public class Patient
 {
     //makes Patient object
-    protected String id,name, phoneNum, email, emergencyPhone,emergencyEmail,dob;
+    protected String id,name, phoneNum, email, emergencyPhone,dob;
     protected String checkupHistory, physicalResults, prescribedMeds, healthHistory;
     protected String heartRate, feet, bloodPressure;
     protected String temp, weight, inches;
@@ -16,7 +16,6 @@ public class Patient
         phoneNum = "";
         email = "";
         emergencyPhone = "";
-        emergencyEmail = "";
         dob = "";
         checkupHistory = "";
         physicalResults = "";
@@ -34,7 +33,7 @@ public class Patient
 
         gender = "";
     }
-    private void Patient(String name,String phoneNum,String email,String emergencyPhone,String emergencyEmail,
+    private void Patient(String name,String phoneNum,String email,String emergencyPhone,
                             String dob,String checkupHistory,String physicalResults,String prescribedMeds,
                             String healthHistory, String heartRate, String feet, String bloodPressure, String temp,
                             String weight, String inches, String gender)
@@ -45,7 +44,6 @@ public class Patient
         this.phoneNum = phoneNum;
         this.email = email;
         this.emergencyPhone = emergencyPhone;
-        this.emergencyEmail = emergencyEmail;
         this.dob = dob;
         this.checkupHistory = checkupHistory;
         this.physicalResults = physicalResults;
@@ -65,6 +63,14 @@ public class Patient
 
         //char
         this.gender = gender;
+    }
+    public Patient(String name, String phoneNum, String email, String emergencyNum,String dob, String gender) {
+    	this.name = name;
+    	this.phoneNum = phoneNum;
+    	this.email = email;
+    	this.emergencyPhone = emergencyNum;
+    	this.dob = dob;
+    	this.gender = gender;
     }
     //setters for all patient variablesprivate 
     void setID(String newName)
@@ -89,11 +95,6 @@ public class Patient
     private void setEmail(String newEmail)
     {
         email = newEmail;
-    }
-
-    private void setEmergencyEmail(String newEmergencyEmail)
-    {
-        emergencyEmail = newEmergencyEmail;
     }
 
     private void setDob(String newDob)
@@ -181,11 +182,6 @@ public class Patient
     private String getEmail()
     {
         return email;
-    }
-
-    private String getEmergencyEmail()
-    {
-        return emergencyEmail;
     }
 
     private String getDob()
