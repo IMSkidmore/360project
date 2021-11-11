@@ -39,10 +39,12 @@ public class PatientEditInformation extends Application {
     private TextField pharmacyNameTF, pharmacyAddressTF, pharmacyPhoneNumTF;
     private TextField insuranceNameTF, insuranceGroupNumTF, insurancePhoneNumTF;
     private TextField emergencyEmailTF, emergencyPhoneTF;
+    private Stage stageEdit;
     
     public void start(Stage primaryStage) {
 
         //Sets text at top of screen
+    	stageEdit = primaryStage;
         Text sceneTitle1 = new Text("Welcome \"Patient Name\"");
         sceneTitle1.setFont(Font.font("Tacoma", FontWeight.NORMAL, 20));
         HBox welcomeBox1 = new HBox(10);
@@ -217,7 +219,11 @@ public class PatientEditInformation extends Application {
         //EventHandler for saveChanges Button
         EventHandler addInfoHandle = new addInformationHandler();
         saveChanges.setOnAction(addInfoHandle);
-
+        
+        //EventHandler for cancel Button
+        EventHandler cancelHandle = new cancelHandler();
+        cancel.setOnAction(cancelHandle);
+        
         //Adding containers to scene
         Scene scene = new Scene(pane, 1000, 400);
         primaryStage.setScene(scene);
@@ -229,6 +235,14 @@ public class PatientEditInformation extends Application {
         public void handle(ActionEvent event) {
             Patient newPatient = new Patient();
             newPatient.newAccount(nameTF.getText(),DOBTF.getText(),emailTF.getText(),phoneNumTF.getText(),emergencyPhoneTF.getText());
+            
+        }
+    }
+    private class cancelHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent event) {
+            LoginScreenPatient loginPatient = new LoginScreenPatient(stageEdit,400,600);
+            Scene sceneChange = new Scene(loginPatient,400,600);
+            stageEdit.setScene(sceneChange);
             
         }
     }
