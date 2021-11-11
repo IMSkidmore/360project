@@ -1,4 +1,7 @@
 package application;
+
+import java.util.ArrayList;
+
 public class Patient
 {
     //makes Patient object
@@ -8,7 +11,8 @@ public class Patient
     protected String temp, weight, inches;
     protected String gender;
     protected String age;
-
+    protected Pharmacy phm;
+    
     public Patient()
     {
     	id = "";
@@ -32,6 +36,7 @@ public class Patient
         inches = "";
 
         gender = "";
+        phm = new Pharmacy();
     }
     private Patient(String name,String phoneNum,String email,String emergencyPhone,
                             String dob,String checkupHistory,String physicalResults,String prescribedMeds,
@@ -73,6 +78,7 @@ public class Patient
     	this.gender = gender;
     	String[] newDOB = dob.split("/");
     	id = name + newDOB[0] + newDOB[1]  + newDOB[2];
+    	phm = new Pharmacy();
     }
     //setters for all patient variablesprivate 
     void setName(String newName)
@@ -159,6 +165,16 @@ public class Patient
     {
         gender = newGen;
     }
+    void setPharmacyName(String phmName) {
+    	phm.setComp(phmName);
+    }
+    void setPharmacyAddress(String phmAddress) {
+    	phm.setAdd(phmAddress);
+    }
+    void setPharmacyNum(String phmNum) {
+    	phm.setNum(phmNum);
+    }
+
 
 
     //getters for all patient variables
@@ -245,16 +261,18 @@ public class Patient
     private String getID() {
     	return id;
     }
-	public void newAccount(String name, String DOB, String email, String phone, String emgPhone) {
-		this.name = name;
-		this.dob = DOB;
-		this.email = email;
-		this.phoneNum = phone;
-		this.emergencyPhone = emgPhone;
-		
-	}
 	private int getFloorAge() {
 		//Calculate age. floor. Use "01/02/2000". Parser string to int. 
 		return 0;
+	}
+	public ArrayList<String> addPatientInfo() {
+		ArrayList<String> ret = new ArrayList<String>();
+		ret.add(name);
+		ret.add(phoneNum);
+		ret.add(email);
+		ret.add(emergencyPhone);
+		ret.add(dob);
+		ret.add(gender);
+		return ret;
 	}
 }
