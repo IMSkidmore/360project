@@ -1,3 +1,5 @@
+//This is the login screen, provides the user the chance to sign in with username and password
+
 package application;
 
 import java.io.BufferedReader;
