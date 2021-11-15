@@ -1,3 +1,5 @@
+//The screen for the actual exam for the doctor. Provides doctor with all necessary options to save information
+
 package application;
 import javafx.application.Application;
 import javafx.geometry.Pos;
