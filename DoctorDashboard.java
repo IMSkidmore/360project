@@ -106,7 +106,6 @@ public class DoctorDashboard extends Application {
         Tab patients = new Tab("Patient History");
         Tab patientHistory = new Tab("Patient History", PH_Scroll);
         tabPane.getTabs().add(checkIn);
-        tabPane.getTabs().add(patients);
         tabPane.getTabs().add(patientHistory);
 
         root.setCenter(tabPane);
