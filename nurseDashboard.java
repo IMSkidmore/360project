@@ -1,3 +1,6 @@
+//This is the dashboard for the nurse, practically their home screen. Lets them go to what screens
+//They need to and complete the tasks they need to in their daily work.
+
 package application;
 import javafx.application.Application;
 import javafx.scene.Scene;
