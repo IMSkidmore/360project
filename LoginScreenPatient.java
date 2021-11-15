@@ -1,3 +1,6 @@
+//this is the login screen for the patients, access the usernames and passwords stored in LoginPatients.txt rather than
+//employees login text file
+
 package application;
 
 import java.io.BufferedReader;
