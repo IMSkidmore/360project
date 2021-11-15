@@ -39,7 +39,7 @@ public class HelloApplication extends Application {
 
     private TextField recipientTF;
     private TextField subjectTF;
-    private TextField messageTF;
+    private TextArea messageTF;
     private Stage stageMessage;
 
     public void start(Stage primaryStage) {
@@ -62,9 +62,11 @@ public class HelloApplication extends Application {
         subjectTF.setMaxWidth(200);
 
         Label messageLabel = new Label("Message\n");
-        messageTF = new TextField();
+        messageTF = new TextArea();
         messageTF.setPromptText("...");
-        messageTF.setMaxWidth(200);
+        messageTF.setPrefWidth(300);
+        messageTF.setPrefHeight(500);
+        messageTF.setWrapText(true);
 
         Button send = new Button("Send");
         Button cancel = new Button("Cancel");
@@ -105,9 +107,5 @@ public class HelloApplication extends Application {
         primaryStage.setTitle("Messaging");
         primaryStage.show();
 
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }
