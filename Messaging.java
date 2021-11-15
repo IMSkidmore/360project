@@ -1,3 +1,5 @@
+//Messaging screen, pulls up the screen for anyone interacting with the system to send a message to anyone within the system.
+
 //package com.example.messaging;
 
 import javafx.application.Application;
