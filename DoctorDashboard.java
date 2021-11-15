@@ -36,10 +36,55 @@ public class DoctorDashboard extends Application {
         records.setPrefHeight(80);
         message.setPrefHeight(80);
         hBox.getChildren().addAll(name,dob,examination,records,message);
+	    
+	//Creates the grid pane for the patient history tab
+        GridPane PH_Table = new GridPane();
+        PH_Table.setBorder(new Border(new BorderStroke[2]));
+	
+	//Gets the data of the patients
+	FileManipulator FM = new FileManipulator();
+        
+        ArrayList<Patient> data = null;
+		try {
+			data = FM.readFilePatientInfo();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	PH_Table.add(new Text("Patient Name    "), 0, 0);
+	PH_Table.add(new Text("    Date of Birth    "), 1, 0);
+	    
+	//Populates the history buttons in the chart
+        for(int i = 0; i < data.size(); i++)
+        {
+        	Button tempBTN = new Button("History");
+        	tempBTN.setId(String.valueOf(i));
+        	tempBTN.setOnAction(new EventHandler<ActionEvent>() {
+        	    @Override public void handle(ActionEvent e) {
+        	    	Button numberButton = (Button) e.getTarget();
+        	        int index = Integer.parseInt(numberButton.getId());
+        	        System.out.println(index);
+        	        
+        	    }
+        });
+		
+	//Adds the data to the grid pane
+        PH_Table.add(new Text(data.get(i).name), 0, i + 1);
+        	
+        PH_Table.add(new Text("    " + data.get(i).dob), 1, i + 1);
+        PH_Table.add(tempBTN, 2, i + 1);
+	
+	//Scroll pane in case of larger tables
+        ScrollPane PH_Scroll = new ScrollPane(PH_Table);
+        PH_Scroll.setPadding(new Insets(10));
+		
+	
 
         TabPane tabPane = new TabPane();
         Tab checkIn = new Tab("Check In Patients",hBox);
         Tab patients = new Tab("Patients");
+	Tab patientHistory = new Tab("Patient History", PH_Scroll);
         tabPane.getTabs().add(checkIn);
         tabPane.getTabs().add(patients);
 
