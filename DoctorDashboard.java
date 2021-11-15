@@ -4,6 +4,8 @@
 package application;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,10 +13,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DoctorDashboard extends Application {
@@ -29,6 +38,7 @@ public class DoctorDashboard extends Application {
         ArrayList<String> patientlist = new ArrayList<String>();
         ArrayList<String> dobs = new ArrayList<String>();
         ListView<HBox> listView = new ListView<>();
+        
 
         for (Patient p : patientlistt){
 
@@ -48,11 +58,10 @@ public class DoctorDashboard extends Application {
         PH_Table.setBorder(new Border(new BorderStroke[2]));
         
 
-        FileManipulator FM = new FileManipulator();
         
         ArrayList<Patient> data = null;
 		try {
-			data = FM.readFilePatientInfo();
+			data = fm.readFilePatientInfo();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
