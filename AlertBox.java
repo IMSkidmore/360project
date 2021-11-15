@@ -1,4 +1,4 @@
-//alertbox for any errors
+//alertbox for any errors - if anything occurs that was unintended / any errors we can call this to display an error
 
 package application;
 
