@@ -1,3 +1,6 @@
+//doctor dashboard is the doctors home screen, gives them options to move throughout the system to complete
+//their various work tasks.
+
 package application;
 import javafx.application.Application;
 import javafx.geometry.Insets;
