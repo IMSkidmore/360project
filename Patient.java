@@ -278,7 +278,7 @@ public class Patient {
             if (currMonthInt - patMonthInt == 0) {
 
                 //if patient turned 12 on current date
-                if (currDayInt - patMonthInt == 0) {
+                if (currDayInt - patDayInt == 0) {
                     return 12;
                 }
 
@@ -301,6 +301,27 @@ public class Patient {
             //if patient turns 12 after current month
             else {
                 return 11;
+            }
+        }
+        else
+        {
+            //if patient was born in same month as current month
+            if (currMonthInt - patMonthInt == 0) {
+
+                //if patient bday on current date
+                if (currDayInt - patDayInt == 0) {
+                    return currYearInt - patYearInt + 1;
+                }
+
+                //if patient had turned 12 before current date
+                else if (currDayInt - patDayInt > 0) {
+                    return currYearInt - patYearInt +1;
+                }
+
+                //patient turns 12 after current date
+                else {
+                    return currYearInt - patYearInt;
+                }
             }
         }
         return currYearInt - patYearInt;
