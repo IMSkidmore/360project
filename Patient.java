@@ -1,264 +1,325 @@
-package application;
+package com.example.demo1;//package application;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Patient {
-	// makes Patient object
-	protected String id, name, phoneNum, email, emergencyPhone, dob;
-	protected String checkupDate, physicalResults, prescribedMeds, healthHistory;
-	protected String heartRate, feet, bloodPressure;
-	protected String temp, weight, inches;
-	protected String gender;
-	protected String age;
-	protected String insurName, insurGroup, insurNum;
-	protected Pharmacy phm;
+    // makes Patient object
+    protected String id, name, phoneNum, email, emergencyPhone, dob;
+    protected String checkupDate, physicalResults, prescribedMeds, healthHistory;
+    protected String heartRate, feet, bloodPressure;
+    protected String temp, weight, inches;
+    protected String gender;
+    protected String age;
+    protected String insurName, insurGroup, insurNum;
+    protected Pharmacy phm;
 
-	public Patient() {
-		id = "";
-		name = "";
-		phoneNum = "";
-		email = "";
-		emergencyPhone = "";
-		dob = "";
-		checkupDate = "";
-		physicalResults = "";
-		prescribedMeds = "";
-		healthHistory = "";
+    public Patient() {
+        id = "";
+        name = "";
+        phoneNum = "";
+        email = "";
+        emergencyPhone = "";
+        dob = "";
+        checkupDate = "";
+        physicalResults = "";
+        prescribedMeds = "";
+        healthHistory = "";
 
-		heartRate = "";
-		feet = "";
-		bloodPressure = "";
-		age = "";
+        heartRate = "";
+        feet = "";
+        bloodPressure = "";
+        age = "";
 
-		temp = "";
-		weight = "";
-		inches = "";
+        temp = "";
+        weight = "";
+        inches = "";
 
-		gender = "";
-		
-		insurName = "";
-		insurGroup = "";
-		insurNum = "";
-		phm = new Pharmacy();
-	}
+        gender = "";
 
-	private Patient(String name, String phoneNum, String email, String emergencyPhone, String dob,
-			String checkupDate, String physicalResults, String prescribedMeds, String healthHistory,
-			String heartRate, String feet, String bloodPressure, String temp, String weight, String inches,
-			String gender) {
-		// strings
-		this.id = name + dob;
-		this.name = name;
-		this.phoneNum = phoneNum;
-		this.email = email;
-		this.emergencyPhone = emergencyPhone;
-		this.dob = dob;
-		this.checkupDate = checkupDate;
-		this.physicalResults = physicalResults;
-		this.prescribedMeds = prescribedMeds;
-		this.healthHistory = healthHistory;
+        insurName = "";
+        insurGroup = "";
+        insurNum = "";
+        phm = new Pharmacy();
+    }
 
-		// ints
-		this.heartRate = heartRate;
-		this.feet = feet;
-		this.bloodPressure = bloodPressure;
-		this.age = age;
+    private Patient(String name, String phoneNum, String email, String emergencyPhone, String dob,
+                    String checkupDate, String physicalResults, String prescribedMeds, String healthHistory,
+                    String heartRate, String feet, String bloodPressure, String temp, String weight, String inches,
+                    String gender) {
+        // strings
+        this.id = name + dob;
+        this.name = name;
+        this.phoneNum = phoneNum;
+        this.email = email;
+        this.emergencyPhone = emergencyPhone;
+        this.dob = dob;
+        this.checkupDate = checkupDate;
+        this.physicalResults = physicalResults;
+        this.prescribedMeds = prescribedMeds;
+        this.healthHistory = healthHistory;
 
-		// doubles
-		this.temp = temp;
-		this.weight = weight;
-		this.inches = inches;
+        // ints
+        this.heartRate = heartRate;
+        this.feet = feet;
+        this.bloodPressure = bloodPressure;
+        this.age = age;
 
-		// char
-		this.gender = gender;
-	}
+        // doubles
+        this.temp = temp;
+        this.weight = weight;
+        this.inches = inches;
 
-	public Patient(String name, String phoneNum, String email, String emergencyNum, String dob, String gender, String phmName, String phmAddress, String phmNum, String insurName, String insurGroup, String insurNum) {
-		this.name = name;
-		this.phoneNum = phoneNum;
-		this.email = email;
-		this.emergencyPhone = emergencyNum;
-		this.dob = dob;
-		this.gender = gender;
-		String[] newDOB = dob.split("/");
-		id = name + newDOB[0] + newDOB[1] + newDOB[2];
-		phm = new Pharmacy(phmName,phmAddress,phmNum);
-		checkupDate = "";
-		physicalResults = "";
-		prescribedMeds = "";
-		healthHistory = "";
+        // char
+        this.gender = gender;
+    }
 
-		heartRate = "";
-		feet = "";
-		bloodPressure = "";
-		age = "";
+    public Patient(String name, String phoneNum, String email, String emergencyNum, String dob, String gender, String phmName, String phmAddress, String phmNum, String insurName, String insurGroup, String insurNum) {
+        this.name = name;
+        this.phoneNum = phoneNum;
+        this.email = email;
+        this.emergencyPhone = emergencyNum;
+        this.dob = dob;
+        this.gender = gender;
+        String[] newDOB = dob.split("/");
+        id = name + newDOB[0] + newDOB[1] + newDOB[2];
+        phm = new Pharmacy(phmName, phmAddress, phmNum);
+        checkupDate = "";
+        physicalResults = "";
+        prescribedMeds = "";
+        healthHistory = "";
 
-		temp = "";
-		weight = "";
-		inches = "";
-		
-		this.insurName = insurName;
-		this.insurGroup = insurGroup;
-		this.insurNum = insurNum;
-	}
+        heartRate = "";
+        feet = "";
+        bloodPressure = "";
+        age = "";
 
-	// setters for all patient variablesprivate
-	void setName(String newName) {
-		name = newName;
-	}
+        temp = "";
+        weight = "";
+        inches = "";
 
-	private void setPhoneNum(String newPhoneNum) {
-		phoneNum = newPhoneNum;
-	}
+        this.insurName = insurName;
+        this.insurGroup = insurGroup;
+        this.insurNum = insurNum;
+    }
 
-	private void setEmergencyPhone(String newEmergencyPhone) {
-		emergencyPhone = newEmergencyPhone;
-	}
+    // setters for all patient variablesprivate
+    void setName(String newName) {
+        name = newName;
+    }
 
-	private void setEmail(String newEmail) {
-		email = newEmail;
-	}
+    private void setPhoneNum(String newPhoneNum) {
+        phoneNum = newPhoneNum;
+    }
 
-	private void setDob(String newDob) {
-		dob = newDob;
-	}
+    private void setEmergencyPhone(String newEmergencyPhone) {
+        emergencyPhone = newEmergencyPhone;
+    }
 
-	private void setCheckupHistory(String newCheckupHistory) {
-		checkupDate = newCheckupHistory;
-	}
+    private void setEmail(String newEmail) {
+        email = newEmail;
+    }
 
-	private void setPhysicalResults(String newPhysicalResults) {
-		physicalResults = newPhysicalResults;
-	}
+    private void setDob(String newDob) {
+        dob = newDob;
+    }
 
-	private void setPrescribedMeds(String newPrescribedMeds) {
-		prescribedMeds = newPrescribedMeds;
-	}
+    private void setCheckupHistory(String newCheckupHistory) {
+        checkupDate = newCheckupHistory;
+    }
 
-	private void setHealthHistory(String newHealthHistory) {
-		healthHistory = newHealthHistory;
-	}
+    private void setPhysicalResults(String newPhysicalResults) {
+        physicalResults = newPhysicalResults;
+    }
 
-	private void setHeartRate(String newHeartRate) {
-		heartRate = newHeartRate;
-	}
+    private void setPrescribedMeds(String newPrescribedMeds) {
+        prescribedMeds = newPrescribedMeds;
+    }
 
-	private void setFeet(String newFeet) {
-		feet = newFeet;
-	}
+    private void setHealthHistory(String newHealthHistory) {
+        healthHistory = newHealthHistory;
+    }
 
-	private void setBloodPressure(String newBloodPressure) {
-		bloodPressure = newBloodPressure;
-	}
+    private void setHeartRate(String newHeartRate) {
+        heartRate = newHeartRate;
+    }
 
-	private void setAge(String newAge) {
-		age = newAge;
-	}
+    private void setFeet(String newFeet) {
+        feet = newFeet;
+    }
 
-	private void setTemp(String newTemp) {
-		temp = newTemp;
-	}
+    private void setBloodPressure(String newBloodPressure) {
+        bloodPressure = newBloodPressure;
+    }
 
-	private void setWeight(String newWeight) {
-		weight = newWeight;
-	}
+    private void setAge(String newAge) {
+        age = newAge;
+    }
 
-	private void setInches(String newInches) {
-		inches = newInches;
-	}
+    private void setTemp(String newTemp) {
+        temp = newTemp;
+    }
 
-	private void setGender(String newGen) {
-		gender = newGen;
-	}
+    private void setWeight(String newWeight) {
+        weight = newWeight;
+    }
 
-	// getters for all patient variables
-	private String getName() {
-		return name;
-	}
+    private void setInches(String newInches) {
+        inches = newInches;
+    }
 
-	private String getPhoneNum() {
-		return phoneNum;
-	}
+    private void setGender(String newGen) {
+        gender = newGen;
+    }
 
-	private String getEmergencyPhone() {
-		return emergencyPhone;
-	}
+    // getters for all patient variables
+    private String getName() {
+        return name;
+    }
 
-	private String getEmail() {
-		return email;
-	}
+    private String getPhoneNum() {
+        return phoneNum;
+    }
 
-	private String getDob() {
-		return dob;
-	}
+    private String getEmergencyPhone() {
+        return emergencyPhone;
+    }
 
-	private String getCheckupHistory() {
-		return checkupDate;
-	}
+    private String getEmail() {
+        return email;
+    }
 
-	private String getPhysicalResults() {
-		return physicalResults;
-	}
+    private String getDob() {
+        return dob;
+    }
 
-	private String getPrescribedMeds() {
-		return prescribedMeds;
-	}
+    private String getCheckupHistory() {
+        return checkupDate;
+    }
 
-	private String getHealthHistory() {
-		return healthHistory;
-	}
+    private String getPhysicalResults() {
+        return physicalResults;
+    }
 
-	private String getHeartRate() {
-		return heartRate;
-	}
+    private String getPrescribedMeds() {
+        return prescribedMeds;
+    }
 
-	private String getFeet() {
-		return feet;
-	}
+    private String getHealthHistory() {
+        return healthHistory;
+    }
 
-	private String getBloodPressure() {
-		return bloodPressure;
-	}
+    private String getHeartRate() {
+        return heartRate;
+    }
 
-	private String getAge() {
-		return age;
-	}
+    private String getFeet() {
+        return feet;
+    }
 
-	private String getTemp() {
-		return temp;
-	}
+    private String getBloodPressure() {
+        return bloodPressure;
+    }
 
-	private String getWeight() {
-		return weight;
-	}
+    private String getAge() {
+        return age;
+    }
 
-	private String getInches() {
-		return inches;
-	}
+    private String getTemp() {
+        return temp;
+    }
 
-	private String getID() {
-		return id;
-	}
+    private String getWeight() {
+        return weight;
+    }
 
-	private int getFloorAge() {
-		// Calculate age. floor. Use "01/02/2000". Parser string to int.
-		return 0;
-	}
+    private String getInches() {
+        return inches;
+    }
 
-	public ArrayList<String> addPatientInfo() {
-		ArrayList<String> ret = new ArrayList<String>();
-		ret.add(name);
-		ret.add(phoneNum);
-		ret.add(email);
-		ret.add(emergencyPhone);
-		ret.add(dob);
-		ret.add(gender);
-		ret.add(phm.getComp());
-		ret.add(phm.getAdd());
-		ret.add(phm.getNum());
-		ret.add(insurName);
-		ret.add(insurGroup);
-		ret.add(insurNum);
-		return ret;
-	}
+    private String getID() {
+        return id;
+    }
+
+    private String getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("mm/dd/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
+    }
+
+    private int getFloorAge() {
+        //Patient's DOB
+        String patDOB = getDob();
+        String[] newDOB = patDOB.split("/");
+        String patMonth = newDOB[0];
+        String patDay = newDOB[1];
+        String patYear = newDOB[2];
+        //string to int
+        int patMonthInt = Integer.parseInt(patMonth);
+        int patDayInt = Integer.parseInt(patDay);
+        int patYearInt = Integer.parseInt(patYear);
+
+        //Today's Date
+        String currDate1 = getCurrentDate();
+        String[] currDOB = currDate1.split("/");
+        String currMonth = currDOB[0];
+        String currDay = currDOB[1];
+        String currYear = currDOB[2];
+        //string to int
+        int currMonthInt = Integer.parseInt(currMonth);
+        int currDayInt = Integer.parseInt(currDay);
+        int currYearInt = Integer.parseInt(currYear);
+
+        //if patient will be/turned 12 this year
+        if (currYearInt - patYearInt == 12) {
+
+            //if patient was born in same month as current month
+            if (currMonthInt - patMonthInt == 0) {
+
+                //if patient turned 12 on current date
+                if (currDayInt - patMonthInt == 0) {
+                    return 12;
+                }
+
+                //if patient had turned 12 before current date
+                else if (currDayInt - patDayInt > 0) {
+                    return 12;
+                }
+
+                //patient turns 12 after current date
+                else {
+                    return 11;
+                }
+            }
+
+            //if patient turned 12 in earlier month
+            if (currMonthInt - patMonthInt > 0) {
+                return 12;
+            }
+
+            //if patient turns 12 after current month
+            else {
+                return 11;
+            }
+        }
+        return currYearInt - patYearInt;
+    }
+
+        public ArrayList<String> addPatientInfo() {
+            ArrayList<String> ret = new ArrayList<String>();
+            ret.add(name);
+            ret.add(phoneNum);
+            ret.add(email);
+            ret.add(emergencyPhone);
+            ret.add(dob);
+            ret.add(gender);
+            ret.add(phm.getComp());
+            ret.add(phm.getAdd());
+            ret.add(phm.getNum());
+            ret.add(insurName);
+            ret.add(insurGroup);
+            ret.add(insurNum);
+            return ret;
+        }
 }
