@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Patient {
+public class Patient
+{
     // makes Patient object
     protected String id, name, phoneNum, email, emergencyPhone, dob;
     protected String checkupDate, physicalResults, prescribedMeds, healthHistory;
@@ -75,36 +76,7 @@ public class Patient {
         this.gender = gender;
     }
 
-    public Patient(String name, String phoneNum, String email, String emergencyNum, String dob, String gender, String phmName, String phmAddress, String phmNum, String insurName, String insurGroup, String insurNum) {
-        this.name = name;
-        this.phoneNum = phoneNum;
-        this.email = email;
-        this.emergencyPhone = emergencyNum;
-        this.dob = dob;
-        this.gender = gender;
-        String[] newDOB = dob.split("/");
-        id = name + newDOB[0] + newDOB[1] + newDOB[2];
-        phm = new Pharmacy(phmName, phmAddress, phmNum);
-        checkupDate = "";
-        physicalResults = "";
-        prescribedMeds = "";
-        healthHistory = "";
-
-        heartRate = "";
-        feet = "";
-        bloodPressure = "";
-        age = "";
-
-        temp = "";
-        weight = "";
-        inches = "";
-
-        this.insurName = insurName;
-        this.insurGroup = insurGroup;
-        this.insurNum = insurNum;
-    }
-
-    // setters for all patient variablesprivate
+    // setters for all patient variables private
     void setName(String newName) {
         name = newName;
     }
@@ -243,14 +215,15 @@ public class Patient {
     }
 
     private String getCurrentDate() {
+        //formats date for later use
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("mm/dd/yyyy");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
     }
 
-    private int getFloorAge() {
+    private int getFloorAge(String dob) {
         //Patient's DOB
-        String patDOB = getDob();
+        String patDOB = dob;
         String[] newDOB = patDOB.split("/");
         String patMonth = newDOB[0];
         String patDay = newDOB[1];
@@ -302,9 +275,7 @@ public class Patient {
             else {
                 return 11;
             }
-        }
-        else
-        {
+        } else {
             //if patient was born in same month as current month
             if (currMonthInt - patMonthInt == 0) {
 
@@ -315,16 +286,12 @@ public class Patient {
 
                 //if patient had turned 12 before current date
                 else if (currDayInt - patDayInt > 0) {
-                    return currYearInt - patYearInt +1;
-                }
-
-                //patient turns 12 after current date
-                else {
-                    return currYearInt - patYearInt;
+                    return currYearInt - patYearInt + 1;
                 }
             }
         }
-        return currYearInt - patYearInt;
+        //if patient bday after current date
+        return currYearInt - patYearInt-1;
     }
 
         public ArrayList<String> addPatientInfo() {
