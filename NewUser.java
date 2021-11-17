@@ -1,5 +1,6 @@
 package com.example.createaccount;
 
+//Declares all imports
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
