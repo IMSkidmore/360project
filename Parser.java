@@ -38,4 +38,13 @@ public class Parser {
 		array=str.split(",");
 		return array;
 	}
+	public Patient findPatient(String name, ArrayList<Patient> arrayPatients) {
+		
+		for(Patient p: arrayPatients) {
+			if(p.getName().equals(name)) {
+				return p;
+			}
+		}
+		return null;
+	}
 }
