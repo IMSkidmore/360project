@@ -1,4 +1,4 @@
-package com.example.demo1;//package application;
+package application;//package application;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -45,7 +45,7 @@ public class Patient
         phm = new Pharmacy();
     }
 
-    private Patient(String name, String phoneNum, String email, String emergencyPhone, String dob,
+    public Patient(String name, String phoneNum, String email, String emergencyPhone, String dob,
                     String checkupDate, String physicalResults, String prescribedMeds, String healthHistory,
                     String heartRate, String feet, String bloodPressure, String temp, String weight, String inches,
                     String gender) {
@@ -75,8 +75,28 @@ public class Patient
         // char
         this.gender = gender;
     }
+    
 
-    // setters for all patient variables private
+    public Patient(String name, String phoneNum, String email, String emergPhoneNum, String DOB, String gender, String pharmName,
+			String pharmAddress,String pharmNum, String insurName, String insurGroupNum, String insurPhoneNum) {
+		// TODO Auto-generated constructor stub
+    	 this.name = name;
+    	 this.phoneNum = phoneNum;
+    	 this.email = email;
+    	 this.emergencyPhone = emergPhoneNum;
+    	 this.dob = DOB;
+    	 this.gender = gender;
+    	 phm = new Pharmacy(pharmName, pharmAddress, pharmNum);
+    	 this.insurName = insurName;
+    	 this.insurGroup = insurGroupNum;
+    	 this.insurNum = insurPhoneNum;
+    	 String patDOB = dob;
+         String[] newDOB = patDOB.split("/");
+         String[] idName = this.name.split(" ");
+         id = idName[0] + idName[1] + newDOB[0]+ newDOB[1] + newDOB[2];
+	}
+
+	// setters for all patient variables private
     void setName(String newName) {
         name = newName;
     }
@@ -146,7 +166,7 @@ public class Patient
     }
 
     // getters for all patient variables
-    private String getName() {
+    String getName() {
         return name;
     }
 
@@ -162,7 +182,7 @@ public class Patient
         return email;
     }
 
-    private String getDob() {
+    String getDob() {
         return dob;
     }
 
@@ -210,7 +230,7 @@ public class Patient
         return inches;
     }
 
-    private String getID() {
+    String getID() {
         return id;
     }
 
@@ -221,7 +241,7 @@ public class Patient
         return dtf.format(now);
     }
 
-    private int getFloorAge(String dob) {
+    int getFloorAge(String dob) {
         //Patient's DOB
         String patDOB = dob;
         String[] newDOB = patDOB.split("/");
