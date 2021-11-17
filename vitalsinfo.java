@@ -1,5 +1,6 @@
 package vitalsinformation;
 
+//declares necessary imports
 import javafx.scene.paint.Color;
 import javafx.application.Application;
 import javafx.geometry.Insets;
