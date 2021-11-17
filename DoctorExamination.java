@@ -1,5 +1,6 @@
 //The screen for the actual exam for the doctor. Provides doctor with all necessary options to save information
 
+//Declares all necessary imports
 package application;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -14,6 +15,10 @@ import javafx.stage.Stage;
 public class DoctorExamination extends Application {
     @Override
     public void start(Stage stage) throws Exception {
+        
+        //builds label  and sets font size, then creates a new label for reflexes and sets that font size as well.
+        //Then builds all the radio buttons for the doctor to put in the reflexes of the patient.
+        //Also sets up an area for the doctor to input other physical tests.
         VBox vBox = new VBox(15);
         Label top = new Label("Examination for (Insert Name here)");
         top.setAlignment(Pos.CENTER);
