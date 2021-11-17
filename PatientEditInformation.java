@@ -1,5 +1,6 @@
 //package com.example.demo1;
 
+//declares imports
 package application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -36,6 +37,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class PatientEditInformation extends Application {
 
+	//Sets up variables for the textfields which the patient would need to edit
     private TextField nameTF, emailTF, DOBTF, phoneNumTF;
     private TextField pharmacyNameTF, pharmacyAddressTF, pharmacyPhoneNumTF;
     private TextField insuranceNameTF, insuranceGroupNumTF, insurancePhoneNumTF;
@@ -46,6 +48,7 @@ public class PatientEditInformation extends Application {
     public void start(Stage primaryStage) {
 
         //Sets text at top of screens
+	    //Builds stage and gives welcome text as title, then changes font and size and sets up the welcome box
     	stageEdit = primaryStage;
         Text sceneTitle1 = new Text("Welcome");
         sceneTitle1.setFont(Font.font("Tacoma", FontWeight.NORMAL, 20));
@@ -56,7 +59,7 @@ public class PatientEditInformation extends Application {
         //Initialize labels, textfields, prompts, and size for contact info
         Label contactLabel = new Label("Contact Information");
 
-
+	    //Builds labels and sets size and prompt text, also sets up text fields
         Label name = new Label("               Name:");
         nameTF = new TextField();
         nameTF.setPromptText("John Doe");
