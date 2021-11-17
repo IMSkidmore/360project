@@ -30,60 +30,80 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.PasswordField;
 
 public class LoginScreenPatient extends StackPane {
-	private TextField username = new TextField();
-	private PasswordField password = new PasswordField();
-	public int choice;
-	private Stage stageLogin;
-	public LoginScreenPatient(Stage primaryStage, int width, int height) {		
-		
-		// Layout for login screen
-		stageLogin = primaryStage;
-		VBox vBoxLayout1 = new VBox();
-		vBoxLayout1.setSpacing(8);
-		vBoxLayout1.setPadding(new Insets(10, 10, 10, 10));
-		Button login = new Button("Login");
-		Button newUser = new Button("New User");
-		vBoxLayout1.getChildren().addAll(new Label("Username"), username, new Label("Password"), password, login, newUser);
-		this.getChildren().addAll(vBoxLayout1);
+    private TextField username = new TextField();
+    private PasswordField password = new PasswordField();
+    public int choice;
+    private Stage stageLogin;
+    private Stage mainStage;
 
-		// Event for button login
-		EventHandler loginHandle = new ButtonHandler();
-		login.setOnAction(loginHandle);
-		
-		EventHandler newUserHandle = new NewUserHandler();
-		newUser.setOnAction(newUserHandle);
+    public LoginScreenPatient(Stage primaryStage, int width, int height) {
 
-	}
-	private class ButtonHandler implements EventHandler<ActionEvent> {
-		public void handle(ActionEvent event) {
-			try {
-				Scanner scanner = new Scanner(new FileReader("src/application/LoginPatients.txt"));
-				String line;
+        // Layout for login screen
+        mainStage = primaryStage;
+        stageLogin = primaryStage;
+        VBox vBoxLayout1 = new VBox();
+        vBoxLayout1.setSpacing(8);
+        vBoxLayout1.setPadding(new Insets(10, 10, 10, 10));
+        Button login = new Button("Login");
+        Button newUser = new Button("New User");
+        Button cancel = new Button("Cancel");
+        vBoxLayout1.getChildren().addAll(new Label("Username"), username, new Label("Password"), password, login, newUser, cancel);
+        this.getChildren().addAll(vBoxLayout1);
 
-	            while (scanner.hasNext()) {
-	            	line = scanner.nextLine();
-	            	String[] tokens=line.split(",");
-	            	
-	            	if (username.getText().equals(tokens[0]) && password.getText().equals(tokens[1])) {
-	            		//add switch content here
-	    			} else if (username.getText().equals(tokens[0])) {
-	    				AlertBox.display("Login Error", "Password is incorrect, check capslock");
-	    			} else if (!username.getText().equals(tokens[0]) && !password.getText().equals(tokens[1])){
-	    				AlertBox.display("Login Error", "No such account found");
-	    			}
-	            }
-	            scanner.close();
-	        } catch (IOException e) {
-	            AlertBox.display("File not found", "Check file location");
-	        }
-			AlertBox.display("Login Error", "Username is incorrect, check capslock");
-		}
-	} // end of ButtonHandler
-	private class NewUserHandler implements EventHandler<ActionEvent>{
-		public void handle(ActionEvent event) {
-			PatientEditInformation pei = new PatientEditInformation();
-    		pei.start(stageLogin);
-		}
-	}
-	
+        // Event for button login
+        EventHandler loginHandle = new ButtonHandler();
+        login.setOnAction(loginHandle);
+
+        EventHandler newUserHandle = new NewUserHandler();
+        newUser.setOnAction(newUserHandle);
+
+        EventHandler cancelled = new cancelHandler();
+        cancel.setOnAction(cancelled);
+
+    }
+    private class ButtonHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent event) {
+            try {
+                Scanner scanner = new Scanner(new FileReader("src/application/LoginPatients.txt"));
+                String line;
+
+                while (scanner.hasNext()) {
+                    line = scanner.nextLine();
+                    String[] tokens=line.split(",");
+
+                    if (username.getText().equals(tokens[0]) && password.getText().equals(tokens[1])) {
+                        //add switch content here
+                    } else if (username.getText().equals(tokens[0])) {
+                        AlertBox.display("Login Error", "Password is incorrect, check capslock");
+                    } else if (!username.getText().equals(tokens[0]) && !password.getText().equals(tokens[1])){
+                        AlertBox.display("Login Error", "No such account found");
+                    }
+                }
+                scanner.close();
+            } catch (IOException e) {
+                AlertBox.display("File not found", "Check file location");
+            }
+            AlertBox.display("Login Error", "Username is incorrect, check capslock");
+        }
+    } // end of ButtonHandler
+    private class NewUserHandler implements EventHandler<ActionEvent>{
+        public void handle(ActionEvent event) {
+            patientEditInformation pei = new patientEditInformation();
+            pei.start(stageLogin);
+        }
+    }
+
+    private class cancelHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent event) {
+
+            Main cancelDash = new Main();
+
+            try {
+                cancelDash.start(mainStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
