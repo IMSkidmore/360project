@@ -1,5 +1,6 @@
 package application;
 
+//declares all imports
 import javafx.geometry.Pos;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.paint.Color;
