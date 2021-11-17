@@ -68,8 +68,8 @@ public class LoginScreenPatient extends StackPane {
 	            		//add switch content here
 	    			} else if (username.getText().equals(tokens[0])) {
 	    				AlertBox.display("Login Error", "Password is incorrect, check capslock");
-	    			} else if(password.getAccessibleText().equals(tokens[1])){
-	    				AlertBox.display("Login Error", "Username is incorrect, check capslock");
+	    			} else if (!username.getText().equals(tokens[0]) && !password.getText().equals(tokens[1])){
+	    				AlertBox.display("Login Error", "No such account found");
 	    			}
 	            }
 	            scanner.close();
