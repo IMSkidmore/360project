@@ -2,6 +2,7 @@
 
 //package com.example.messaging;
 
+//declares all imports
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -39,6 +40,7 @@ import javafx.scene.control.PasswordField;
 
 public class HelloApplication extends Application {
 
+    //All variables declared to set up text fields then a text area for message so it can be long, then sets up stage
     private TextField recipientTF;
     private TextField subjectTF;
     private TextArea messageTF;
@@ -46,6 +48,7 @@ public class HelloApplication extends Application {
 
     public void start(Stage primaryStage) {
 
+        //sets up the title for the scene and changes the font and size then orients it correctly
         stageMessage = primaryStage;
         Text sceneTitle1 = new Text("Messaging");
         sceneTitle1.setFont(Font.font("Tacoma", FontWeight.NORMAL, 20));
@@ -53,6 +56,7 @@ public class HelloApplication extends Application {
         welcomeBox1.setAlignment(Pos.TOP_CENTER);
         welcomeBox1.getChildren().add(sceneTitle1);
 
+        //Sets up all the labels and text fields for the recipient,subject, and message
         Label recipientLabel = new Label("Recipient\n");
         recipientTF = new TextField();
         recipientTF.setPromptText("Doctor John Doe");
@@ -70,6 +74,7 @@ public class HelloApplication extends Application {
         messageTF.setPrefHeight(500);
         messageTF.setWrapText(true);
 
+        //sets up send and cancel buttons
         Button send = new Button("Send");
         Button cancel = new Button("Cancel");
 
@@ -96,14 +101,17 @@ public class HelloApplication extends Application {
         pane.setHgap(5);
 
         pane.add(welcomeBox1, 1, 0);
-
+    
+        //adds boxes
         pane.add(recipientBox,0,1);
         pane.add(subjectBox,0,2);
         pane.add(messageBox,0,3);
         pane.add(sendBox,1,6);
 
+        //sets color
         pane.setStyle("-fx-background-color: #a2f3f5;");
 
+        //actially builds scene and displays everything
         Scene scene = new Scene(pane, 1000, 400);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Messaging");
