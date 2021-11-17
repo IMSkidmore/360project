@@ -16,11 +16,13 @@ import javafx.stage.Stage;
 public class NurseDashboard extends Application {
     @Override
     public void start(Stage stage){
+        //Sets up pane and background color and size
         GridPane pane = new GridPane();
         pane.setStyle("-fx-background-color: #a2f3f5;");
         pane.setVgap(20);
         pane.setHgap(20);
 
+        //Builds new labels and sets font size for consistency
         Label welcome = new Label("Welcome!");
         welcome.setStyle("-fx-font-size: 20px");
         Label checkIn = new Label("Check in patient");
@@ -34,6 +36,7 @@ public class NurseDashboard extends Application {
         VBox vBox1 = new VBox(10);
         vBox1.getChildren().addAll(checkInNew, addNew);
 
+        //lists patients and provides buttons to either see their notes or edit their vitals
         ListView<HBox> listView = new ListView<>();
         HBox hBox = new HBox(10);
         hBox.getChildren().
