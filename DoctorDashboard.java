@@ -3,6 +3,7 @@
 
 package application;
 
+//Brings in all necessary imports to properly run the dashboard
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,18 +29,20 @@ import java.util.ArrayList;
 
 public class DoctorDashboard extends Application {
 
+	//declares variables patientlist and primStage which is the primary stage for display purposes.
     private ArrayList<Patient> patientlistt;
     private Stage primStage;
 
     public void start(Stage stage) throws Exception {
 
+	    // sets up new filemanipulator builds arraylists to track information
         FileManipulator fm = new FileManipulator();
         patientlistt = fm.readFilePatientInfo();
         ArrayList<String> patientlist = new ArrayList<String>();
         ArrayList<String> dobs = new ArrayList<String>();
         ListView<HBox> listView = new ListView<>();
         
-
+	//For loop to build patients
         for (Patient p : patientlistt){
 
             HBox hBox = new HBox(10);
