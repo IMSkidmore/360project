@@ -1,4 +1,4 @@
-package application;//package application;
+package com.example.demo1;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -46,9 +46,9 @@ public class Patient
     }
 
     public Patient(String name, String phoneNum, String email, String emergencyPhone, String dob,
-                    String checkupDate, String physicalResults, String prescribedMeds, String healthHistory,
-                    String heartRate, String feet, String bloodPressure, String temp, String weight, String inches,
-                    String gender) {
+                   String checkupDate, String physicalResults, String prescribedMeds, String healthHistory,
+                   String heartRate, String feet, String bloodPressure, String temp, String weight, String inches,
+                   String gender) {
         // strings
         this.id = name + dob;
         this.name = name;
@@ -75,28 +75,28 @@ public class Patient
         // char
         this.gender = gender;
     }
-    
+
 
     public Patient(String name, String phoneNum, String email, String emergPhoneNum, String DOB, String gender, String pharmName,
-			String pharmAddress,String pharmNum, String insurName, String insurGroupNum, String insurPhoneNum) {
-		// TODO Auto-generated constructor stub
-    	 this.name = name;
-    	 this.phoneNum = phoneNum;
-    	 this.email = email;
-    	 this.emergencyPhone = emergPhoneNum;
-    	 this.dob = DOB;
-    	 this.gender = gender;
-    	 phm = new Pharmacy(pharmName, pharmAddress, pharmNum);
-    	 this.insurName = insurName;
-    	 this.insurGroup = insurGroupNum;
-    	 this.insurNum = insurPhoneNum;
-    	 String patDOB = dob;
-         String[] newDOB = patDOB.split("/");
-         String[] idName = this.name.split(" ");
-         id = idName[0] + idName[1] + newDOB[0]+ newDOB[1] + newDOB[2];
-	}
+                   String pharmAddress,String pharmNum, String insurName, String insurGroupNum, String insurPhoneNum) {
+        // TODO Auto-generated constructor stub
+        this.name = name;
+        this.phoneNum = phoneNum;
+        this.email = email;
+        this.emergencyPhone = emergPhoneNum;
+        this.dob = DOB;
+        this.gender = gender;
+        phm = new Pharmacy(pharmName, pharmAddress, pharmNum);
+        this.insurName = insurName;
+        this.insurGroup = insurGroupNum;
+        this.insurNum = insurPhoneNum;
+        String patDOB = dob;
+        String[] newDOB = patDOB.split("/");
+        String[] idName = this.name.split(" ");
+        id = idName[0] + idName[1] + newDOB[0]+ newDOB[1] + newDOB[2];
+    }
 
-	// setters for all patient variables private
+    // setters for all patient variables private
     void setName(String newName) {
         name = newName;
     }
@@ -272,27 +272,32 @@ public class Patient
 
                 //if patient turned 12 on current date
                 if (currDayInt - patDayInt == 0) {
+                    setAge("12");
                     return 12;
                 }
 
                 //if patient had turned 12 before current date
                 else if (currDayInt - patDayInt > 0) {
+                    setAge("12");
                     return 12;
                 }
 
                 //patient turns 12 after current date
                 else {
+                    setAge("11");
                     return 11;
                 }
             }
 
             //if patient turned 12 in earlier month
             if (currMonthInt - patMonthInt > 0) {
+                setAge("12");
                 return 12;
             }
 
             //if patient turns 12 after current month
             else {
+                setAge("11");
                 return 11;
             }
         } else {
@@ -301,33 +306,39 @@ public class Patient
 
                 //if patient bday on current date
                 if (currDayInt - patDayInt == 0) {
+                    int age3 = currYearInt - patYearInt + 1;
+                    setAge(application.Parser.intToString(age3));
                     return currYearInt - patYearInt + 1;
                 }
 
                 //if patient had turned 12 before current date
                 else if (currDayInt - patDayInt > 0) {
+                    int age3 =currYearInt - patYearInt + 1;
+                    setAge(application.Parser.intToString(age3));
                     return currYearInt - patYearInt + 1;
                 }
             }
         }
         //if patient bday after current date
+        int age6 = currYearInt - patYearInt-1;
+        setAge(application.Parser.intToString(age6));
         return currYearInt - patYearInt-1;
     }
 
-        public ArrayList<String> addPatientInfo() {
-            ArrayList<String> ret = new ArrayList<String>();
-            ret.add(name);
-            ret.add(phoneNum);
-            ret.add(email);
-            ret.add(emergencyPhone);
-            ret.add(dob);
-            ret.add(gender);
-            ret.add(phm.getComp());
-            ret.add(phm.getAdd());
-            ret.add(phm.getNum());
-            ret.add(insurName);
-            ret.add(insurGroup);
-            ret.add(insurNum);
-            return ret;
-        }
+    public ArrayList<String> addPatientInfo() {
+        ArrayList<String> ret = new ArrayList<String>();
+        ret.add(name);
+        ret.add(phoneNum);
+        ret.add(email);
+        ret.add(emergencyPhone);
+        ret.add(dob);
+        ret.add(gender);
+        ret.add(phm.getComp());
+        ret.add(phm.getAdd());
+        ret.add(phm.getNum());
+        ret.add(insurName);
+        ret.add(insurGroup);
+        ret.add(insurNum);
+        return ret;
+    }
 }
