@@ -60,7 +60,8 @@ public class VitalsInfo extends StackPane {
 
 		// Creation of the "Submit" button
 		Button b = new Button("Submit");
-
+		EventHandler sumbitHandle = new inputHandler();
+		b.setOnAction(sumbitHandle);
 		// Adding the components to their respective container, and setting the spaces
 		root.getChildren().addAll(heartLabel, tf1, tempLabel, tf3, heightLabel, tf5, tf6);
 		root.setSpacing(10);
@@ -79,10 +80,7 @@ public class VitalsInfo extends StackPane {
 
 		// Adding the major container created above to the scene and setting the scene
 		// up
-		Scene scene = new Scene(root3, 550, 300);
-		primaryStage.setScene(scene);
-		primaryStage.setTitle("Input Patient Vital Information");
-		primaryStage.show();
+		this.getChildren().addAll(root3);
 		// Vertical and horizontal boxes for components
 
 	}
@@ -91,17 +89,20 @@ public class VitalsInfo extends StackPane {
 		public void handle(ActionEvent event) {
 			FileManipulator fm = new FileManipulator();
 			ArrayList<String> inputArray = new ArrayList<String>();
-			if (p.getFloorAge(p.getDob()) < 13 && tf4.getText().compareTo("") != 0) {
+
+			/*if (p.getFloorAge(p.getDob()) < 13 && tf4.getText().compareTo("") != 0) {
 				AlertBox.display("Patient Under 12 Years Old", "Cannot take the blood pressure of this patient");
-			} else {
+			} else {*/
+			
 				inputArray.add(tf1.getText());//Heart Rate
 				inputArray.add(tf2.getText());//Weight
 				inputArray.add(tf3.getText());//Temp
 				inputArray.add(tf4.getText());//Blood Pressure
 				inputArray.add(tf5.getText());//Height
 				inputArray.add(tf6.getText());//Height
-			}
+			//}
 			try {
+				
 				fm.writeFileContentsVitals(p.getID(), inputArray);
 				NurseDashboard nd = new NurseDashboard();
 				nd.start(vitalsStage);
