@@ -90,9 +90,9 @@ public class VitalsInfo extends StackPane {
 			FileManipulator fm = new FileManipulator();
 			ArrayList<String> inputArray = new ArrayList<String>();
 
-			/*if (p.getFloorAge(p.getDob()) < 13 && tf4.getText().compareTo("") != 0) {
+			if (p.getFloorAge(p.getDob()) < 13 && tf4.getText().compareTo("") != 0) {
 				AlertBox.display("Patient Under 12 Years Old", "Cannot take the blood pressure of this patient");
-			} else {*/
+			} else {
 			
 				inputArray.add(tf1.getText());//Heart Rate
 				inputArray.add(tf2.getText());//Weight
@@ -100,7 +100,7 @@ public class VitalsInfo extends StackPane {
 				inputArray.add(tf4.getText());//Blood Pressure
 				inputArray.add(tf5.getText());//Height
 				inputArray.add(tf6.getText());//Height
-			//}
+			}
 			try {
 				
 				fm.writeFileContentsVitals(p.getID(), inputArray);
