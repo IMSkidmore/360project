@@ -79,7 +79,6 @@ public class HelloApplication extends Application {
         Button cancel = new Button("Cancel");
 
         VBox sendBox = new VBox();
-        VBox cancelBox = new VBox();
 
         HBox recipientBox = new HBox(5);
         HBox subjectBox = new HBox(5);
@@ -87,8 +86,6 @@ public class HelloApplication extends Application {
 
         sendBox.setAlignment((Pos.BOTTOM_RIGHT));
         sendBox.getChildren().add(send);
-        cancelBox.setAlignment(Pos.BOTTOM_CENTER);
-        cancelBox.getChildren().add(cancel);
 
         recipientBox.getChildren().addAll(recipientLabel, recipientTF);
         subjectBox.getChildren().addAll(subjectLabel, subjectTF);
