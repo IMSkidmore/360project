@@ -15,7 +15,7 @@ public class FileManipulator {
 		}
 		FileWriter filewrite;
 		try {
-			filewrite = new FileWriter("src/application/" + fileName + ".txt", true);
+			filewrite = new FileWriter(file, true);
 
 			// Initialing BufferedWriter
 			BufferedWriter bufferwrite = new BufferedWriter(filewrite);
@@ -72,7 +72,7 @@ public class FileManipulator {
 		}
 		FileWriter filewrite;
 		try {
-			filewrite = new FileWriter("src/application/PatientInfo.txt", true);
+			filewrite = new FileWriter(file, true);
 			// Initialing BufferedWriter
 			BufferedWriter bufferwrite = new BufferedWriter(filewrite);
 
@@ -114,7 +114,7 @@ public class FileManipulator {
 		}
 		FileWriter filewrite;
 		try {
-			filewrite = new FileWriter("src/application/" + fileName + ".txt", true);
+			filewrite = new FileWriter(file, true);
 			// Initialing BufferedWriter
 			BufferedWriter bufferwrite = new BufferedWriter(filewrite);
 
@@ -146,7 +146,7 @@ public class FileManipulator {
 		}
 		FileWriter filewrite;
 		try {
-			filewrite = new FileWriter("src/application/" + fileName + ".txt", true);
+			filewrite = new FileWriter(file, true);
 			// Initialing BufferedWriter
 			BufferedWriter bufferwrite = new BufferedWriter(filewrite);
 
