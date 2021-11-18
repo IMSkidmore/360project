@@ -1,10 +1,8 @@
 package application;
 
 import javafx.scene.paint.Color;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
