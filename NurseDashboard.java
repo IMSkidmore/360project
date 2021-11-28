@@ -27,13 +27,14 @@ public class NurseDashboard extends Application {
     private  EventHandler editVHandle;
     private Label name;
     private Patient p;
+    private ArrayList<String> indexList;
 
     public void start(Stage primaryStage) throws IOException {
 
         //file manipulator object
         FileManipulator fm = new FileManipulator();
         array = fm.readFilePatientInfo();
-
+        indexList = new ArrayList<String>();
 
         stageLogin = primaryStage;
         GridPane pane = new GridPane();
@@ -113,11 +114,12 @@ public class NurseDashboard extends Application {
 
             HBox hBox = new HBox(10);
             name = new Label(p.getName());
-            
+            indexList.add(p.getName());
             Button editButton = new Button("Edit Vitals");
             editButton.setOnAction(editVHandle);
        
             hBox.setPadding(new Insets(10));
+            editButton.setId(p.getName());
             hBox.getChildren().addAll(name, editButton);
             listView.getItems().add(hBox);
         }
@@ -127,9 +129,10 @@ public class NurseDashboard extends Application {
     {
         public void handle(ActionEvent e)
         {
-        	 if (!choosePatient.getSelectionModel().isEmpty()) {
-                 Patient p = Parser.findPatient(choosePatient.getValue(), array);
-             }
+        	Button butt = (Button) e.getTarget();
+        	Patient p = null;
+            p = Parser.findPatient(butt.getId(), array);
+             
             VitalsInfo v = new VitalsInfo(stageLogin, p);
             Scene sceneVitals = new Scene(v);
             try {
