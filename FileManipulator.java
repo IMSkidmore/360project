@@ -152,9 +152,9 @@ public class FileManipulator {
 
 			int i = 0;
 			for (String s : array) {
-				if (i >= 11) {
+				if (i >= array.size()-1) {
 					bufferwrite.write(s);
-				} else if (i < 11) {
+				} else if (i < array.size()-1) {
 					bufferwrite.write(s + ",");
 				}
 				i++;
