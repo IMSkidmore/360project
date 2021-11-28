@@ -94,6 +94,20 @@ public class DoctorExamination extends VBox {
         	examStuff.add(throat.getText());
         	examStuff.add(medi.getText());
         	examStuff.add(history.getText());
+        	String reflex = null;
+            if(radioButton0.isSelected()){
+                reflex = "0";
+            } else if(radioButton1.isSelected()){
+                reflex = "1";
+            } else if(radioButton2.isSelected()){
+                reflex = "2";
+            } else if(radioButton3.isSelected()){
+                reflex = "3";
+            } else if(radioButton4.isSelected()){
+                reflex = "4";
+            }
+
+            examStuff.add(reflex);
         	FileManipulator writer = new FileManipulator();
         	try {
 				writer.writeFileContentsExam(p.getID(), examStuff);
