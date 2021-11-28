@@ -1,3 +1,7 @@
+ package application;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,15 +12,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class DoctorExamination extends Application {
+public class DoctorExamination extends VBox {
 
     private Stage saved;
     private Stage cancelled;
     private EventHandler savee = new saveHandler();
     private EventHandler cancell = new cancelHandler();
-
-    public void start(Stage stage) throws Exception {
-
+    private RadioButton radioButton0,radioButton1,radioButton2,radioButton3,radioButton4;
+    private TextField eye,ears,throat, medi;
+    private TextArea history;
+    private Patient p;
+    public DoctorExamination(Stage stage, Patient input) throws Exception {
+    	p = input;
         saved = stage;
         cancelled = stage;
 
@@ -27,38 +34,39 @@ public class DoctorExamination extends Application {
         top.setStyle("-fx-font-size: 18px");
         Label reflex = new Label("Reflexes");
         reflex.setStyle("-fx-font-size: 18px");
-        RadioButton radioButton0 = new RadioButton("0");
-        RadioButton radioButton1 = new RadioButton("1");
-        RadioButton radioButton2 = new RadioButton("2");
-        RadioButton radioButton3 = new RadioButton("3");
-        RadioButton radioButton4 = new RadioButton("4");
+        radioButton0 = new RadioButton("0");
+        radioButton1 = new RadioButton("1");
+        radioButton2 = new RadioButton("2");
+        radioButton3 = new RadioButton("3");
+        radioButton4 = new RadioButton("4");
         HBox hBox = new HBox(20);
         hBox.getChildren().addAll(reflex, radioButton0, radioButton1, radioButton2,
                 radioButton3, radioButton4);
         Label eyes = new Label("Eye Test:");
         eyes.setStyle("-fx-font-size: 13px");
-        TextField eye = new TextField();
+        eye = new TextField();
         eye.setPromptText("Eye examination results");
         eye.setMaxWidth(250);
         Label ear = new Label("Ear Test:");
         ear.setStyle("-fx-font-size: 13px");
-        TextField ears = new TextField();
+        ears = new TextField();
         ears.setPromptText("Ear examination results");
         ears.setMaxWidth(250);
-        TextField throat = new TextField();
+        throat = new TextField();
         throat.setPromptText("Throat examination results");
         throat.setMaxWidth(250);
         Label throats = new Label("Throat Test:");
         throats.setStyle("-fx-font-size: 13px");
         Label medication = new Label("Prescribe Medication");
         medication.setStyle("-fx-font-size: 13px");
-        TextField medi = new TextField();
+        medi = new TextField();
         medi.setPromptText("Prescription");
         medi.setMaxWidth(250);
         Label summary = new Label("Health History");
         summary.setStyle("-fx-font-size: 13px");
-        TextArea history = new TextArea();
+        history = new TextArea();
         history.setPromptText("Enter Health History");
+        
         Button cancel = new Button("Cancel");
         cancel.setOnAction(cancell);
         Button save = new Button("Save");
@@ -70,20 +78,29 @@ public class DoctorExamination extends Application {
         HBox summ = new HBox(30);
         summ.getChildren().addAll(summary, history);
 
-        vBox.getChildren().addAll(top, hBox, summ, eyes, eye, ear, ears, throats, throat, medication, medi, hBox1);
+        this.getChildren().addAll(top, hBox, summ, eyes, eye, ear, ears, throats, throat, medication, medi, hBox1);
         stage.setScene(new Scene(vBox, 600, 400));
         stage.show();
         stage.setTitle("Doctor Exam");
 
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     private class saveHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
-
+        	
+        	ArrayList<String> examStuff = new ArrayList<String>();
+        	examStuff.add(eye.getText());
+        	examStuff.add(ears.getText());
+        	examStuff.add(throat.getText());
+        	examStuff.add(medi.getText());
+        	examStuff.add(history.getText());
+        	FileManipulator writer = new FileManipulator();
+        	try {
+				writer.writeFileContentsExam(p.getID(), examStuff);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             DoctorDashboard saveDash = new DoctorDashboard();
             try {
                 saveDash.start(saved);
