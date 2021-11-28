@@ -1,99 +1,140 @@
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.control.ListView;
-import javafx.stage.Stage;
-import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.util.ArrayList;
 
+public class Examination extends Application {
 
-public class DoctorDashboard extends Application {
-
-    private ArrayList<Patient> patientlistt;
-    private Stage examScreen;
-    private Stage msgScreen;
-    private EventHandler msgHandle = new messageHandler();
-    private EventHandler examHandle = new examHandler();
+    private Stage saved;
+    private Stage cancelled;
+    private EventHandler savee = new saveHandler();
+    private EventHandler cancell = new cancelHandler();
+    private String reflex;
+    private TextField eye,ears,throat, medi;
+    private RadioButton radioButton0, radioButton1, radioButton2, radioButton3, radioButton4, radioButton5;
+    private TextArea history;
+    private Patient p;
 
     public void start(Stage stage) throws Exception {
 
-        examScreen = stage;
-        msgScreen = stage;
+        saved = stage;
+        cancelled = stage;
 
-        FileManipulator fm = new FileManipulator();
-        patientlistt = fm.readFilePatientInfo();
-        ArrayList<String> patientlist = new ArrayList<String>();
-        ArrayList<String> dobs = new ArrayList<String>();
-        ListView<HBox> listView = new ListView<>();
-
-        for (Patient p : patientlistt){
-
-            HBox hBox = new HBox(10);
-            Label name = new Label(p.getName());
-            Label dob = new Label("Date of birth: " + p.getDob());
-            Button examination = new Button("New Examination");
-            examination.setOnAction(examHandle);
-            Button message = new Button("Message");
-            message.setOnAction(msgHandle);
-            hBox.setPadding(new Insets(10));
-            hBox.getChildren().addAll(name,dob,examination,message);
-            listView.getItems().add(hBox);
-
-        }
-
-        BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #a2f3f5;");
-        Label top = new Label("Welcome, Dr.(Insert Name here)");
+        VBox vBox = new VBox(15);
+        vBox.setStyle("-fx-background-color: #a2f3f5;");
+        Label top = new Label("Examination for (Insert Name here)");
         top.setAlignment(Pos.CENTER);
-        top.setStyle("-fx-font-size: 20px");
-        root.setTop(top);
+        top.setStyle("-fx-font-size: 18px");
+        Label reflex = new Label("Reflexes");
+        reflex.setStyle("-fx-font-size: 18px");
+        radioButton0 = new RadioButton("0");
+        radioButton1 = new RadioButton("1");
+        radioButton2 = new RadioButton("2");
+        radioButton3 = new RadioButton("3");
+        radioButton4 = new RadioButton("4");
+        HBox hBox = new HBox(20);
+        hBox.getChildren().addAll(reflex, radioButton0, radioButton1, radioButton2,
+                radioButton3, radioButton4);
+        Label eyes = new Label("Eye Test:");
+        eyes.setStyle("-fx-font-size: 13px");
+        eye = new TextField();
+        eye.setPromptText("Eye examination results");
+        eye.setMaxWidth(250);
+        Label ear = new Label("Ear Test:");
+        ear.setStyle("-fx-font-size: 13px");
+        ears = new TextField();
+        ears.setPromptText("Ear examination results");
+        ears.setMaxWidth(250);
+        throat = new TextField();
+        throat.setPromptText("Throat examination results");
+        throat.setMaxWidth(250);
+        Label throats = new Label("Throat Test:");
+        throats.setStyle("-fx-font-size: 13px");
+        Label medication = new Label("Prescribe Medication");
+        medication.setStyle("-fx-font-size: 13px");
+        medi = new TextField();
+        medi.setPromptText("Prescription");
+        medi.setMaxWidth(250);
+        Label summary = new Label("Health History");
+        summary.setStyle("-fx-font-size: 13px");
+        history = new TextArea();
+        history.setPromptText("Enter Health History");
+        Button cancel = new Button("Cancel");
+        cancel.setOnAction(cancell);
+        Button save = new Button("Save");
+        save.setOnAction(savee);
 
-        TabPane tabPane = new TabPane();
-        Tab checkIn = new Tab("Patients", listView);
-        Tab patients = new Tab("Patient History");
-        tabPane.getTabs().add(checkIn);
-        tabPane.getTabs().add(patients);
+        HBox hBox1 = new HBox(30);
+        hBox1.getChildren().addAll(cancel, save);
+        hBox1.setAlignment(Pos.CENTER);
+        HBox summ = new HBox(30);
+        summ.getChildren().addAll(summary, history);
 
-        root.setCenter(tabPane);
-        stage.setScene(new Scene(root, 600, 400));
-        stage.setTitle("Doctor Dashboard");
+        vBox.getChildren().addAll(top, hBox, summ, eyes, eye, ear, ears, throats, throat, medication, medi, hBox1);
+        stage.setScene(new Scene(vBox, 800, 600));
         stage.show();
+        stage.setTitle("Doctor Exam");
+
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
-
-    private class examHandler implements EventHandler<ActionEvent> {
+    private class saveHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
 
+            ArrayList<String> examStuff = new ArrayList<String>();
+            examStuff.add(eye.getText());
+            examStuff.add(ears.getText());
+            examStuff.add(throat.getText());
+            examStuff.add(medi.getText());
+            examStuff.add(history.getText());
 
-            Examination newExam = new Examination();
+            if(radioButton0.isSelected()){
+                reflex = "0";
+            } else if(radioButton1.isSelected()){
+                reflex = "1";
+            } else if(radioButton2.isSelected()){
+                reflex = "2";
+            } else if(radioButton3.isSelected()){
+                reflex = "3";
+            } else if(radioButton4.isSelected()){
+                reflex = "4";
+            }
+
+            examStuff.add(reflex);
+
+            FileManipulator writer = new FileManipulator();
             try {
-                newExam.start(examScreen);
+                writer.writeFileContentsExam(p.getID(), examStuff);
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+
+            DoctorDashboard saveDash = new DoctorDashboard();
+            try {
+                saveDash.start(saved);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private class messageHandler implements EventHandler<ActionEvent> {
+    private class cancelHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
 
-
-            Messaging newMsg = new Messaging();
-
+            DoctorDashboard cancelDash = new DoctorDashboard();
             try {
-                newMsg.start(msgScreen);
+                cancelDash.start(cancelled);
             } catch (Exception e) {
                 e.printStackTrace();
             }
