@@ -51,6 +51,7 @@ public class DoctorDashboard extends Application {
             Label dob = new Label("Date of birth: " + p.getDob());
             Button examination = new Button("New Examination");
             examination.setOnAction(examHandle);
+            examination.setId(p.getName());
             Button message = new Button("Message");
             message.setOnAction(msgHandle);
             hBox.setPadding(new Insets(10));
@@ -80,8 +81,8 @@ public class DoctorDashboard extends Application {
         {
         	Button tempBTN = new Button("History");
         	tempBTN.setId(String.valueOf(i));
-        	EventHandler hiotoryHandle = new HistoryHandler();
-        	tempBTN.setOnAction(hiotoryHandle);
+        	EventHandler historyHandle = new HistoryHandler();
+        	tempBTN.setOnAction(historyHandle);
         	
         	//Adds the data to the grid pane
         	PH_Table.add(new Text(data.get(i).name), 0, i + 1);
@@ -120,18 +121,22 @@ public class DoctorDashboard extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
 
     private class examHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
 
-
-            DoctorExamination newExam = new DoctorExamination();
+        	Button butty = (Button) event.getTarget();
+        	Patient p = Parser.findPatient(butty.getId(), patientlistt);
+            DoctorExamination newExam = null;
+			try {
+				newExam = new DoctorExamination(examScreen, p);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            Scene sc = new Scene(newExam);
             try {
-                newExam.start(examScreen);
+            	examScreen.setScene(sc);
             } catch (Exception e) {
                 e.printStackTrace();
             }
