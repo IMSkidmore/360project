@@ -169,7 +169,11 @@ public class DoctorDashboard extends Application {
 		{
 			Button numberButton = (Button) event.getTarget();
 	        int index = Integer.parseInt(numberButton.getId());
-	        System.out.println(index);
+	        System.out.println("Selected history for patient at index " + index);
+	        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	        //Add the stage opener for the history viewer here
+	        //The index of the selected patient is the index variable
+	        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 			
 		}
     	
