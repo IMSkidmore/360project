@@ -1,12 +1,5 @@
-//doctor dashboard is the doctors home screen, gives them options to move throughout the system to complete
-//their various work tasks.
-
 package application;
-
-//Brings in all necessary imports to properly run the dashboard
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -27,36 +20,45 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
+
 public class DoctorDashboard extends Application {
 
-	//declares variables patientlist and primStage which is the primary stage for display purposes.
     private ArrayList<Patient> patientlistt;
-    private Stage primStage;
+    private Stage examScreen;
+    private Stage msgScreen;
+    private EventHandler msgHandle = new messageHandler();
+    private EventHandler examHandle = new examHandler();
 
     public void start(Stage stage) throws Exception {
 
-	    // sets up new filemanipulator builds arraylists to track information
+        examScreen = stage;
+        msgScreen = stage;
+
         FileManipulator fm = new FileManipulator();
         patientlistt = fm.readFilePatientInfo();
         ArrayList<String> patientlist = new ArrayList<String>();
         ArrayList<String> dobs = new ArrayList<String>();
         ListView<HBox> listView = new ListView<>();
-        
-	//For loop to build patients
+
         for (Patient p : patientlistt){
 
             HBox hBox = new HBox(10);
             Label name = new Label(p.getName());
             Label dob = new Label("Date of birth: " + p.getDob());
             Button examination = new Button("New Examination");
+            examination.setOnAction(examHandle);
             Button message = new Button("Message");
+            message.setOnAction(msgHandle);
             hBox.setPadding(new Insets(10));
             hBox.getChildren().addAll(name,dob,examination,message);
             listView.getItems().add(hBox);
 
         }
-        
-        //Creates the grid pane for the patient history tab
+        //================================================
         GridPane PH_Table = new GridPane();
         PH_Table.setBorder(new Border(new BorderStroke[2]));
         
@@ -78,13 +80,8 @@ public class DoctorDashboard extends Application {
         {
         	Button tempBTN = new Button("History");
         	tempBTN.setId(String.valueOf(i));
-        	tempBTN.setOnAction(new EventHandler<ActionEvent>() {
-        	    @Override public void handle(ActionEvent e) {
-        	    	Button numberButton = (Button) e.getTarget();
-        	        int index = Integer.parseInt(numberButton.getId());
-        	        System.out.println(index);
-        	    }
-        	});
+        	EventHandler hiotoryHandle = new HistoryHandler();
+        	tempBTN.setOnAction(hiotoryHandle);
         	
         	//Adds the data to the grid pane
         	PH_Table.add(new Text(data.get(i).name), 0, i + 1);
@@ -96,20 +93,26 @@ public class DoctorDashboard extends Application {
         //Scroll pane in case of larger tables
         ScrollPane PH_Scroll = new ScrollPane(PH_Table);
         PH_Scroll.setPadding(new Insets(10));
+        //===============================================
+        
+        Button cancel = new Button("Cancel");
+        EventHandler cancelHandle = new CancelHandler();
+        cancel.setOnAction(cancelHandle);
 
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #a2f3f5;");
-        Label top = new Label("Welcome, Dr.(Insert Name here)");
-        top.setAlignment(Pos.CENTER);
+        Label top = new Label("Welcome, Doctor                                                                      ");
+        HBox topBox = new HBox();
+        topBox.getChildren().addAll(top, cancel);
+        top.setAlignment(Pos.TOP_RIGHT);
         top.setStyle("-fx-font-size: 20px");
-        root.setTop(top);
+        root.setTop(topBox);
 
         TabPane tabPane = new TabPane();
         Tab checkIn = new Tab("Patients", listView);
-        Tab patients = new Tab("Patient History");
-        Tab patientHistory = new Tab("Patient History", PH_Scroll);
+        Tab patients = new Tab("Patient History", PH_Scroll);
         tabPane.getTabs().add(checkIn);
-        tabPane.getTabs().add(patientHistory);
+        tabPane.getTabs().add(patients);
 
         root.setCenter(tabPane);
         stage.setScene(new Scene(root, 600, 400));
@@ -121,5 +124,55 @@ public class DoctorDashboard extends Application {
         launch(args);
     }
 
+
+    private class examHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent event) {
+
+
+            DoctorExamination newExam = new DoctorExamination();
+            try {
+                newExam.start(examScreen);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class messageHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent event) {
+
+
+            Messaging newMsg = new Messaging();
+
+            try {
+                newMsg.start(msgScreen);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private class CancelHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent event) {
+            Main mn = new Main();
+            try {
+				mn.start(examScreen);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+        }
+    }
+    private class HistoryHandler implements EventHandler<ActionEvent>
+    {
+		public void handle(ActionEvent event) 
+		{
+			Button numberButton = (Button) event.getTarget();
+	        int index = Integer.parseInt(numberButton.getId());
+	        System.out.println(index);
+			
+		}
+    	
+    }
 
 }
