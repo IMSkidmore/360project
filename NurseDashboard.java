@@ -43,7 +43,7 @@ public class NurseDashboard extends Application {
         indexList = new ArrayList<String>();
 
         stageLogin = primaryStage;
-        mainstage = primaryStage;
+        mainStage = primaryStage;
         GridPane pane = new GridPane();
         pane.setStyle("-fx-background-color: #a2f3f5;");
         pane.setVgap(20);
